@@ -1,0 +1,24 @@
+query:
+    title: FPDF2 Make Font
+    generate: Générer
+    reset: Réinitialiser
+    gitHub: GitHub
+fields:
+    fontFile: Police de caractères
+    afmFile: Fichier AFM
+    encoding: Codage
+    embed: Intégré
+    subset: Sous-ensemble
+helps:
+    fontFile: L'extension doit être .ttf, .otf ou .pfb et détermine le type de police.
+    afmFile: Fichier contenant les informations de mesure pour une police PostScript de type 1 (.pfb).
+    encoding: L'encodage définit l’association entre un code (de 0 à 255) et un caractère.
+    embed: Indique si la police doit être intégrée dans le document PDF.
+    subset: Indique si le sous-ensemble des caractères doit être utilisé.
+theme:
+    title: Sélectionner le thème
+    auto: Système
+    dark: Sombre
+    light: Claire
+locale:
+    title: Sélectionner la langue

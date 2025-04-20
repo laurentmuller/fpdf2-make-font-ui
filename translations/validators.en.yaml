@@ -1,0 +1,3 @@
+query:
+    fontFile: The font file is required.
+    afmFile: The AFM file is required for a Type 1 PostScript font.

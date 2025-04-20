@@ -1,0 +1,3 @@
+query:
+    fontFile: Le fichier de police est requis.
+    afmFile: Le fichier AFM est requis pour une police PostScript de type 1.

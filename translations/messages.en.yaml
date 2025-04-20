@@ -1,0 +1,24 @@
+query:
+    title: FPDF2 Make Font
+    generate: Generate
+    reset: Reset
+    gitHub: GitHub
+fields:
+    fontFile: Font File
+    afmFile: AFM File
+    encoding: Encoding
+    embed: Embed
+    subset: Subset
+helps:
+    fontFile: The extension must be either .ttf, .otf or .pfb and determines the font type.
+    afmFile: The file that contains font metric information for a Type 1 PostScript font (.pfb).
+    encoding: The encoding defines the association between a code (from 0 to 255) and a character.
+    embed: Indicates whether the font should be embedded in the PDF document.
+    subset: Indicates whether sub-setting characters should be used.
+theme:
+    title: Select Theme
+    auto: System
+    dark: Dark
+    light: Light
+locale:
+    title: Select Language

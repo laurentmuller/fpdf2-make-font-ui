@@ -1,9 +1,11 @@
 framework:
     asset_mapper:
-        # The paths to make available to the asset mapper.
         paths:
             - assets/
         missing_import_mode: strict
+        importmap_polyfill: false
+        importmap_script_attributes:
+            crossorigin: 'anonymous'
 
 when@prod:
     framework:

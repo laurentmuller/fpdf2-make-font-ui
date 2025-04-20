@@ -1,3 +1,16 @@
-body {
-    background-color: skyblue;
+.btn-form {
+    min-width: 130px;
+}
+
+button[data-theme]:not(.active) .theme-check,
+.dropdown-item.dropdown-locale:not(.active) .locale-check {
+    display: none;
+}
+
+.form-help.form-text {
+    cursor: default;
+}
+
+html[data-bs-theme=dark] .btn.btn-dark {
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
 }

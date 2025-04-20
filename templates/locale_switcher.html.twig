@@ -1,0 +1,24 @@
+{% macro locale_entry(locale, icon) %}
+    {% set text = locale|locale_name(locale)|capitalize %}
+    {% set href = path('switch_locale', {'locale': locale}) %}
+    {% set active = app.request.locale == locale ? ' active': '' %}
+    <li>
+        <a class="dropdown-item dropdown-locale d-flex align-items-center{{ active }}" href="{{ href }}" aria-pressed="false">
+            <i class="fi fi-{{ icon }}"></i>
+            <span class="ms-2">{{ text }}</span>
+            <i class="locale-check ms-auto fa-solid fa-check"></i>
+        </a>
+    </li>
+{% endmacro %}
+
+<div>
+    <button id="locale-switcher" type="button"
+            class="btn btn-link p-1 dropdown-toggle d-flex align-items-center text-body text-decoration-none"
+            type="button" title="{{ 'locale.title'|trans }}" aria-expanded="false" data-bs-toggle="dropdown">
+        <i class="fa-solid fa-language"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-language">
+        {{ _self.locale_entry('en', 'gb') }}
+        {{ _self.locale_entry('fr', 'fr') }}
+    </ul>
+</div>
