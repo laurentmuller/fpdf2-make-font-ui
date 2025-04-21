@@ -19,6 +19,11 @@ jobs:
             -   name: Install dependencies
                 run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+            -   name: Build and compile assets
+                run: |
+                    php bin/console importmap:install
+                    php bin/console asset-map:compile
+
             -   name: Run PHPUnit
                 run: vendor/bin/phpunit --display-skipped --no-progress --coverage-clover ./clover.xml
 
