@@ -36,6 +36,6 @@ class NonceExtensionTest extends IntegrationTestCase
     #[\Override]
     protected function getFixturesDir(): string
     {
-        return __DIR__ . '/Fixtures/NonceExtension';
+        return __DIR__ . '/../Fixtures/NonceExtension';
     }
 }

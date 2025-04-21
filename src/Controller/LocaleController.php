@@ -23,12 +23,13 @@ class LocaleController extends AbstractController
 {
     public const LOCALE_EN = 'en';
     public const LOCALE_FR = 'fr';
+    public const LOCALE_KEY = '_locale';
 
     #[Route('/locale/{locale}', name: 'switch_locale', requirements: ['locale' => self::LOCALE_EN . '|' . self::LOCALE_FR])]
     public function __invoke(string $locale, Request $request, RequestStack $requestStack): RedirectResponse
     {
         $session = $requestStack->getSession();
-        $session->set('_locale', $locale);
+        $session->set(self::LOCALE_KEY, $locale);
         $url = $request->headers->get('referer') ?? '/';
 
         return $this->redirect($url);

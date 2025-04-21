@@ -31,7 +31,7 @@ readonly class LocaleSubscriber
         $request = $event->getRequest();
         $session = $this->requestStack->getSession();
         /** @phpstan-var string $locale */
-        $locale = $session->get('_locale', LocaleController::LOCALE_EN);
+        $locale = $session->get(LocaleController::LOCALE_KEY, LocaleController::LOCALE_EN);
         $request->setLocale($locale);
     }
 }

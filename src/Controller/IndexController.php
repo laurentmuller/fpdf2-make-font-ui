@@ -31,6 +31,7 @@ class IndexController extends AbstractController
     public function __construct(
         #[Autowire('%kernel.project_dir%')]
         private readonly string $projectDir,
+        private readonly FontMaker $fontMaker,
     ) {
     }
 
@@ -91,13 +92,8 @@ class IndexController extends AbstractController
 
     private function cleanDirectory(string $directory): void
     {
-        if (!\is_dir($directory)) {
-            return;
-        }
-        $files = \glob($directory . '/*.*');
-        if (!\is_array($files)) {
-            return;
-        }
+        /** @phpstan-var string[] $files */
+        $files = (array) \glob($directory . '/*.*');
         foreach ($files as $file) {
             \unlink($file);
         }
@@ -119,18 +115,20 @@ class IndexController extends AbstractController
 
     private function makeFont(string $fontFileName, MakeFontQuery $query): ?string
     {
-        $maker = new FontMaker();
-        \ob_start();
-        $maker->makeFont(
-            $fontFileName,
-            $query->encoding,
-            $query->subset,
-            $query->embed,
-        );
-        $content = (string) \ob_get_contents();
-        \ob_end_clean();
+        try {
+            \ob_start();
+            $this->fontMaker->makeFont(
+                $fontFileName,
+                $query->encoding,
+                $query->subset,
+                $query->embed,
+            );
+            $content = (string) \ob_get_contents();
 
-        return '' === $content ? null : $content;
+            return '' === $content ? null : $content;
+        } finally {
+            \ob_end_clean();
+        }
     }
 
     /**
