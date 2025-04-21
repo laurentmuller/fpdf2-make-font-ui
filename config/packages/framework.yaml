@@ -1,6 +1,9 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    session: true
+
+    session:
+        enabled: true
+        name: 'MAKE_FONT_SESSION_ID'
 
     default_locale: en
     enabled_locales: ['en', 'fr']

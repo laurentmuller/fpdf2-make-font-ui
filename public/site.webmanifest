@@ -1,0 +1,33 @@
+{
+    "name": "FPDF2 Make Font",
+    "short_name": "FPDF2 Make Font",
+    "lang": "en",
+    "description": "Allow to create font for FPDF2.",
+    "theme_color": "#212529",
+    "background_color": "#212529",
+    "start_url": "./index.php",
+    "display_override": [
+        "window-controls-overlay"
+    ],
+    "icons": [
+        {
+            "src": "favicon.ico",
+            "sizes": "192x192",
+            "type": "image/ico"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "images/screenshots/ui_light.png",
+            "sizes": "653x584",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "images/screenshots/ui_dark.png",
+            "sizes": "658x585",
+            "type": "image/png",
+            "form_factor": "wide"
+        }
+    ]
+}

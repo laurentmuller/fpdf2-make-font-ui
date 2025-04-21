@@ -21,49 +21,38 @@ class IndexControllerTest extends WebTestCase
 {
     public function testFontMakerException(): void
     {
-        $fieldValues = [
+        $values = [
             'data[fontFile]' => $this->createUploadedFile('otto_header.ttf'),
             'data[afmFile]' => null,
             'data[encoding]' => 'cp1252',
             'data[embed]' => false,
             'data[subset]' => false,
         ];
-        $client = static::createClient();
-        $client->request('POST', '/');
-        self::assertResponseIsSuccessful();
-        $client->submitForm('Generate', $fieldValues);
+        $this->submitForm($values);
     }
 
     public function testPostPFB(): void
     {
-        $fieldValues = [
+        $values = [
             'data[fontFile]' => $this->createUploadedFile('FontType1.pfb'),
             'data[afmFile]' => $this->createUploadedFile('FontType1.afm'),
             'data[encoding]' => 'cp1252',
             'data[embed]' => false,
             'data[subset]' => false,
         ];
-
-        $client = static::createClient();
-        $client->request('POST', '/');
-        self::assertResponseIsSuccessful();
-        $client->submitForm('Generate', $fieldValues);
+        $this->submitForm($values);
     }
 
     public function testPostTTF(): void
     {
-        $fieldValues = [
+        $values = [
             'data[fontFile]' => $this->createUploadedFile('helvetica.ttf'),
             'data[afmFile]' => null,
             'data[encoding]' => 'cp1252',
             'data[embed]' => false,
             'data[subset]' => true,
         ];
-
-        $client = static::createClient();
-        $client->request('POST', '/');
-        self::assertResponseIsSuccessful();
-        $client->submitForm('Generate', $fieldValues);
+        $this->submitForm($values);
     }
 
     private function createUploadedFile(string $name): UploadedFile
@@ -74,5 +63,16 @@ class IndexControllerTest extends WebTestCase
             path: Path::join($directory, $name),
             originalName: $name
         );
+    }
+
+    /**
+     * @param array<string, UploadedFile|string|bool|null> $values
+     */
+    private function submitForm(array $values): void
+    {
+        $client = static::createClient();
+        $client->request('POST', '/');
+        self::assertResponseIsSuccessful();
+        $client->submitForm('Generate', $values);
     }
 }

@@ -6,7 +6,7 @@ generate fonts.
 
 ## User interface
 
-![User Interface](doc/images/ui_light.png)
+![User Interface](public/images/ui_light.png)
 
 ## Fields
 
@@ -66,3 +66,22 @@ especially if the original font was big.
 
 On the top right user can select the language (English or French) and the
 [site color mode](https://getbootstrap.com/docs/5.3/customize/color-modes/).
+
+## Code Quality
+
+[![SymfonyInsight](https://insight.symfony.com/projects/cf786842-6061-4d9d-921c-e0e3a22cf2bd/mini.svg)](https://insight.symfony.com/projects/cf786842-6061-4d9d-921c-e0e3a22cf2bd)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ab264caadf99477c8a7ac132346d99dd)](https://app.codacy.com/gh/laurentmuller/fpdf2-make-font-ui/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![PHP-Stan](https://img.shields.io/badge/PHPStan-Level%2010-brightgreen.svg?style=flat&logo=php)](https://phpstan.org/blog/find-bugs-in-your-code-without-writing-tests)
+[![Psalm](https://img.shields.io/badge/Psalm-Level%201-brightgreen.svg?style=flat)](https://psalm.dev/docs/running_psalm/installation/)
+[![CodeFactor](https://www.codefactor.io/repository/github/laurentmuller/fpdf2-make-font-ui/badge)](https://www.codefactor.io/repository/github/laurentmuller/fpdf2-make-font-ui)
+[![Codecov](https://codecov.io/gh/laurentmuller/fpdf2-make-font-ui/graph/badge.svg?token=3SCSEL8UEM)](https://codecov.io/gh/laurentmuller/fpdf2-make-font-ui)
+
+## Actions
+
+[![PHP-CS-Fixer](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php-cs-fixer.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php-cs-fixer.yaml)
+[![PHPStan](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_stan.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_stan.yaml)
+[![PHPUnit](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml)
+[![Psalm](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/pslam.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/pslam.yaml)
+[![Rector](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/rector.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/rector.yaml)
+[![Lint](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/lint.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/lint.yaml)
+[![StyleCI](https://github.styleci.io/repos/969444909/shield?branch=master)](https://github.styleci.io/repos/969444909?branch=master)
