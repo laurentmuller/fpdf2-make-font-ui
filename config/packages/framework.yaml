@@ -5,7 +5,7 @@ framework:
         enabled: true
         name: 'MAKE_FONT_SESSION_ID'
 
-    default_locale: en
+    default_locale: 'en'
     enabled_locales: ['en', 'fr']
 
     translator:

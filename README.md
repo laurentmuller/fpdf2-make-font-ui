@@ -21,12 +21,11 @@ The `Font File` parameter is the name of the font file. The extension must be
 either `.ttf`, `.otf` or `.pfb` and determines the font type. If your Type1 font
 is in ASCII format (`.pfa`), you can convert it to binary (`.pfb`) with the help
 of [Type 1 utilities](http://www.lcdf.org/~eddietwo/type/#t1utils). For Type1
-fonts, the corresponding `.afm` file must be present in the same directory.
+fonts, the corresponding `.afm` file must be selected.
 
 The `Encoding` defines the association between a code (from 0 to 255) and a
 character. The first 128 are always the same and correspond to ASCII; the
-following are variable. Encodings are stored in `.map` files. The available
-encoding ones are:
+following are variable. The available encoding ones are:
 
 - cp1250 (Central Europe)
 - cp1251 (Cyrillic)
@@ -66,6 +65,14 @@ especially if the original font was big.
 
 On the top right user can select the language (English or French) and the
 [site color mode](https://getbootstrap.com/docs/5.3/customize/color-modes/).
+
+## Versions
+
+[![Application](https://img.shields.io/badge/Application-1.0.0-blue)](https://github.com/laurentmuller/calculation)
+[![Symfony](https://img.shields.io/badge/Symfony-7.2.5-informational?logo=symfony)](https://symfony.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2.27-informational?logo=php)](https://www.php.net)
+[![Apache](https://img.shields.io/badge/Apache-2.4.51-informational?logo=apache)](https://httpd.apache.org)
+[![PhpStorm](https://img.shields.io/badge/PhpStorm-2025.1-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
 
 ## Code Quality
 
