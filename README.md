@@ -6,7 +6,7 @@ generate fonts.
 
 ## User interface
 
-![User Interface](public/images/ui_light.png)
+![User Interface](public/images/ui_light_wide.png)
 
 ## Fields
 
