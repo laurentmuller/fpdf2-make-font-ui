@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'flag-icons/css/flag-icons.min.css';
 import './styles/app.css';
 import 'bootstrap';
 
 (() => {
     'use strict'
-    // const afmFile = document.getElementById('data_afmFile');
+    // const afmFile = document.getElementById('afmFile');
     // fontFile.addEventListener('change', () => {
     //     const required = fontFile.files.length !== 0
     //         && fontFile.files[0].name.endsWith('.pfb');
@@ -14,36 +13,28 @@ import 'bootstrap';
     // });
 
     const form = document.getElementById('data')
-    const fontFile = document.getElementById('data_fontFile');
-    const reset = document.querySelector('.btn-erase')
-    const encoding = document.getElementById('data_encoding');
-    const embed = document.getElementById('data_embed');
-    const subset = document.getElementById('data_subset');
+    const fontFile = document.getElementById('fontFile');
+    const encoding = document.getElementById('encoding');
+    const embed = document.getElementById('embed');
+    const subset = document.getElementById('subset');
+    const reset = document.getElementById('erase')
 
-    form.addEventListener('submit', event => {
-        document.querySelectorAll('.alert').forEach(element => {
-            element.remove()
-        })
-        document.querySelectorAll('.invalid-feedback').forEach(element => {
+    const resetElements = function () {
+        document.querySelectorAll('.alert, .invalid-feedback').forEach(element => {
             element.remove()
         })
         document.querySelectorAll('.is-invalid').forEach(element => {
             element.classList.remove('is-invalid')
         })
+    }
+    form.addEventListener('submit', event => {
+        resetElements()
     });
     reset.addEventListener('click', () => {
         localStorage.removeItem('make-font-encoding');
         localStorage.removeItem('make-font-embed');
         localStorage.removeItem('make-font-subset');
-        document.querySelectorAll('.alert').forEach(element => {
-            element.remove()
-        })
-        document.querySelectorAll('.invalid-feedback').forEach(element => {
-            element.remove()
-        })
-        document.querySelectorAll('.is-invalid').forEach(element => {
-            element.classList.remove('is-invalid')
-        })
+        resetElements()
         form.reset();
         fontFile.focus();
         // document.getElementById('fontFile').dispatchEvent(new Event('change'));

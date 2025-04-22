@@ -2,13 +2,19 @@
     min-width: 130px;
 }
 
-button[data-theme]:not(.active) .theme-check,
-.dropdown-item.dropdown-locale:not(.active) .locale-check {
+.dropdown-item:not(.active) .fa-check {
     display: none;
 }
 
 .form-help.form-text {
     cursor: default;
+}
+
+img.locale {
+    position: relative;
+    display: inline-block;
+    width: 1.333333em;
+    line-height: 1em;
 }
 
 html[data-bs-theme=dark] .btn.btn-dark {

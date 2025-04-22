@@ -6,4 +6,3 @@ config:
 
 globs:
     - "*.md"
-    - "doc/*.md"

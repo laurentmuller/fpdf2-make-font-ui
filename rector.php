@@ -17,7 +17,7 @@ use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\SetList;
 
 return RectorConfig::configure()
-    ->withCache(__DIR__ . '/cache/rector')
+    ->withCache(__DIR__ . '/var/cache/rector')
     ->withRootFiles()
     ->withPaths([
         __DIR__ . '/src',

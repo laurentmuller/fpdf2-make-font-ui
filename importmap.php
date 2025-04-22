@@ -38,11 +38,4 @@ return [
         'version' => '5.3.5',
         'type' => 'css',
     ],
-    'flag-icons' => [
-        'version' => '7.3.2',
-    ],
-    'flag-icons/css/flag-icons.min.css' => [
-        'version' => '7.3.2',
-        'type' => 'css',
-    ],
 ];

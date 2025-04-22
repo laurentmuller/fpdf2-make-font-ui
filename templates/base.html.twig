@@ -6,7 +6,9 @@
     <meta name="application-name" content="FPDF2 Make Font">
     <meta name="description" content="Allow creating fonts for FPDF2.">
     <title>{% block title %}FPDF2{% endblock %}</title>
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icon_192.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="images/icon_144.png">
+    <link rel="manifest" type="application/manifest+json" href="site.webmanifest">
     {% block stylesheets -%}
         <link rel="stylesheet" href="{{ asset('styles/app.css') }}" nonce="{{ csp_nonce() }}">
     {% endblock %}
@@ -14,7 +16,7 @@
         <script src="{{ asset('theme.js') }}" nonce="{{ csp_nonce() }}" crossorigin="anonymous"></script>
         <script defer src="https://kit.fontawesome.com/6a9ba3897a.js" nonce="{{ csp_nonce() }}" crossorigin="anonymous"></script>
         {% block importmap %}
-            {{ importmap('app', {'nonce': csp_nonce()}) }}
+            {{ importmap('app', {nonce: csp_nonce()}) }}
         {% endblock %}
     {% endblock %}
 </head>

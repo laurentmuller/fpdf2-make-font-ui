@@ -4,7 +4,7 @@
         <button type="button" class="dropdown-item d-flex align-items-center" data-theme="{{ theme }}" aria-pressed="false">
             <i class="theme-icon fa-solid fa-{{ icon }}"></i>
             <span class="theme-text ms-2">{{ text }}</span>
-            <i class="theme-check ms-auto fa-solid fa-check"></i>
+            <i class="ms-auto fa-solid fa-check"></i>
         </button>
     </li>
 {% endmacro %}
@@ -16,7 +16,7 @@
         <i class="theme-icon fa-solid fa-circle-half-stroke"></i>
         <span class="theme-text d-none block mx-1">{{ 'theme.auto'|trans }}</span>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end">
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-switcher">
         {{ _self.theme_entry('light', 'sun') }}
         {{ _self.theme_entry('dark', 'moon') }}
         {{ _self.theme_entry('auto', 'circle-half-stroke') }}

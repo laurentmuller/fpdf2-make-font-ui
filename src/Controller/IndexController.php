@@ -62,12 +62,12 @@ class IndexController extends AbstractController
                 \chdir($targetPath);
                 $fontFileName = $fontFile->getBasename();
                 $baseName = \substr($fontFileName, 0, -3);
-                $phpFile = $targetPath . '/' . $baseName . 'php';
-                $compressedFile = $targetPath . '/' . $baseName . 'z';
+                $phpFile = Path::join($targetPath, $baseName . 'php');
+                $compressedFile = Path::join($targetPath, $baseName . 'z');
                 $content = $this->makeFont($fontFileName, $query);
 
                 if (\is_file($compressedFile)) {
-                    $zipFile = $targetPath . '/' . $baseName . '.zip';
+                    $zipFile = Path::join($targetPath, $baseName . '.zip');
                     $this->createZipFile(
                         $zipFile,
                         $phpFile,

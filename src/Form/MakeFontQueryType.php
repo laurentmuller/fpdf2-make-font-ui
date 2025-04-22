@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Model\MakeFontQuery;
+use fpdf\FontMaker;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,92 +27,11 @@ class MakeFontQueryType extends AbstractType
     #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'fontFile',
-            FileType::class,
-            [
-                'label' => 'fields.fontFile',
-                'help' => 'helps.fontFile',
-                'required' => false,
-                'attr' => [
-                    'accept' => '.ttf,.otf,.pfb',
-                    'autofocus' => 'autofocus',
-                ],
-            ]
-        );
-
-        $builder->add(
-            'afmFile',
-            FileType::class,
-            [
-                'label' => 'fields.afmFile',
-                'help' => 'helps.afmFile',
-                'required' => false,
-                'attr' => [
-                    'accept' => '.afm',
-                    // 'disabled' => 'disabled'
-                ],
-            ]
-        );
-
-        $builder->add(
-            'encoding',
-            ChoiceType::class,
-            [
-                'label' => 'fields.encoding',
-                'help' => 'helps.encoding',
-                'preferred_choices' => ['cp1252'],
-                'choice_translation_domain' => false,
-                'choices' => [
-                    'cp1250 (Central Europe)' => 'cp1250',
-                    'cp1251 (Cyrillic)' => 'cp1251',
-                    'cp1252 (Western Europe)' => 'cp1252',
-                    'cp1253 (Greek)' => 'cp1253',
-                    'cp1254 (Turkish)' => 'cp1254',
-                    'cp1255 (Hebrew)' => 'cp1255',
-                    'cp1257 (Baltic)' => 'cp1257',
-                    'cp1258 (Vietnamese)' => 'cp1258',
-                    'cp874 (Thai)' => 'cp874',
-                    'ISO-8859-1 (Western Europe)' => 'ISO-8859-1',
-                    'ISO-8859-2 (Central Europe)' => 'ISO-8859-2',
-                    'ISO-8859-4 (Baltic)' => 'ISO-8859-4',
-                    'ISO-8859-5 (Cyrillic)' => 'ISO-8859-5',
-                    'ISO-8859-7 (Greek)' => 'ISO-8859-7',
-                    'ISO-8859-9 (Turkish)' => 'ISO-8859-9',
-                    'ISO-8859-11 (Thai)' => 'ISO-8859-11',
-                    'ISO-8859-15 (Western Europe)' => 'ISO-8859-15',
-                    'ISO-8859-16 (Central Europe)' => 'ISO-8859-16',
-                    'KOI8-R (Russian)' => 'KOI8-R',
-                    'KOI8-U (Ukrainian)' => 'KOI8-U',
-                ],
-            ]
-        );
-
-        $builder->add(
-            'embed',
-            CheckboxType::class,
-            [
-                'label' => 'fields.embed',
-                'help' => 'helps.embed',
-                'required' => false,
-                'label_attr' => [
-                    'class' => 'checkbox-switch',
-                ],
-            ]
-        );
-
-        $builder->add(
-            'subset',
-            CheckboxType::class,
-            [
-                'label' => 'fields.subset',
-                'help' => 'helps.subset',
-                'required' => false,
-                'label_attr' => [
-                    'class' => 'checkbox-switch',
-                ],
-            ]
-        );
+        $this->addFile($builder, 'fontFile', '.ttf,.otf,.pfb', true);
+        $this->addFile($builder, 'afmFile', '.afm');
+        $this->addEncoding($builder);
+        $this->addCheckBox($builder, 'embed');
+        $this->addCheckBox($builder, 'subset');
     }
 
     #[\Override]
@@ -123,6 +43,61 @@ class MakeFontQueryType extends AbstractType
     #[\Override]
     public function getBlockPrefix(): string
     {
-        return 'data';
+        return '';
+    }
+
+    private function addCheckBox(FormBuilderInterface $builder, string $id): void
+    {
+        $builder->add(
+            $id,
+            CheckboxType::class,
+            [
+                'label' => 'fields.' . $id,
+                'help' => 'helps.' . $id,
+                'required' => false,
+                'label_attr' => [
+                    'class' => 'checkbox-switch',
+                ],
+            ]
+        );
+    }
+
+    private function addEncoding(FormBuilderInterface $builder): void
+    {
+        $builder->add(
+            'encoding',
+            ChoiceType::class,
+            [
+                'label' => 'fields.encoding',
+                'help' => 'helps.encoding',
+                'choice_translation_domain' => false,
+                'choices' => FontMaker::getEncodings(),
+                'preferred_choices' => [FontMaker::DEFAULT_ENCODING],
+            ]
+        );
+    }
+
+    private function addFile(
+        FormBuilderInterface $builder,
+        string $id,
+        string $accept,
+        bool $autofocus = false
+    ): void {
+        $attr = [
+            'accept' => $accept,
+        ];
+        if ($autofocus) {
+            $attr['autofocus'] = 'autofocus';
+        }
+        $builder->add(
+            $id,
+            FileType::class,
+            [
+                'label' => 'fields.' . $id,
+                'help' => 'helps.' . $id,
+                'required' => false,
+                'attr' => $attr,
+            ]
+        );
     }
 }

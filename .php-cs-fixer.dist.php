@@ -77,7 +77,7 @@ $config = new Config();
 
 return $config
     ->setParallelConfig(ParallelConfigFactory::detect())
-    ->setCacheFile(__DIR__ . '/cache/php-cs-fixer/.php-cs-fixer.cache')
+    ->setCacheFile(__DIR__ . '/var/cache/php-cs-fixer/.php-cs-fixer.cache')
     ->setRiskyAllowed(true)
     ->setFinder($finder)
     ->setRules($rules);

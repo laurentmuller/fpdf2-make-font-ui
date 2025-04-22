@@ -22,11 +22,11 @@ class IndexControllerTest extends WebTestCase
     public function testFontMakerException(): void
     {
         $values = [
-            'data[fontFile]' => $this->createUploadedFile('otto_header.ttf'),
-            'data[afmFile]' => null,
-            'data[encoding]' => 'cp1252',
-            'data[embed]' => false,
-            'data[subset]' => false,
+            'fontFile' => $this->createUploadedFile('otto_header.ttf'),
+            'afmFile' => null,
+            'encoding' => 'cp1252',
+            'embed' => false,
+            'subset' => false,
         ];
         $this->submitForm($values);
     }
@@ -34,11 +34,11 @@ class IndexControllerTest extends WebTestCase
     public function testPostPFB(): void
     {
         $values = [
-            'data[fontFile]' => $this->createUploadedFile('FontType1.pfb'),
-            'data[afmFile]' => $this->createUploadedFile('FontType1.afm'),
-            'data[encoding]' => 'cp1252',
-            'data[embed]' => false,
-            'data[subset]' => false,
+            'fontFile' => $this->createUploadedFile('FontType1.pfb'),
+            'afmFile' => $this->createUploadedFile('FontType1.afm'),
+            'encoding' => 'cp1252',
+            'embed' => false,
+            'subset' => false,
         ];
         $this->submitForm($values);
     }
@@ -46,11 +46,11 @@ class IndexControllerTest extends WebTestCase
     public function testPostTTF(): void
     {
         $values = [
-            'data[fontFile]' => $this->createUploadedFile('helvetica.ttf'),
-            'data[afmFile]' => null,
-            'data[encoding]' => 'cp1252',
-            'data[embed]' => false,
-            'data[subset]' => true,
+            'fontFile' => $this->createUploadedFile('helvetica.ttf'),
+            'afmFile' => null,
+            'encoding' => 'cp1252',
+            'embed' => false,
+            'subset' => true,
         ];
         $this->submitForm($values);
     }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use fpdf\FontMaker;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -33,7 +34,7 @@ class MakeFontQuery
      * The font encoding.
      */
     #[Assert\NotBlank]
-    public string $encoding = 'cp1252';
+    public string $encoding = FontMaker::DEFAULT_ENCODING;
 
     /**
      * The font file.
