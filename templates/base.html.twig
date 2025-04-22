@@ -6,9 +6,9 @@
     <meta name="application-name" content="FPDF2 Make Font">
     <meta name="description" content="Allow creating fonts for FPDF2.">
     <title>{% block title %}FPDF2{% endblock %}</title>
-    <link rel="icon" type="image/png" sizes="192x192" href="images/icon_192.png">
-    <link rel="icon" type="image/png" sizes="144x144" href="images/icon_144.png">
-    <link rel="manifest" type="application/manifest+json" href="site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon_192.png') }}">
+    <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('images/icon_144.png') }}">
+    <link rel="manifest" type="application/manifest+json" href="{{ asset('site.webmanifest') }}">
     {% block stylesheets -%}
         <link rel="stylesheet" href="{{ asset('styles/app.css') }}" nonce="{{ csp_nonce() }}">
     {% endblock %}

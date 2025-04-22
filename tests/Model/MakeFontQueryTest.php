@@ -72,21 +72,22 @@ class MakeFontQueryTest extends TestCase
             ->method('getObject')
             ->willReturn($query);
 
-        if ($expectedViolation) {
-            $violation = $this->createMock(ConstraintViolationBuilderInterface::class);
-            $violation->expects(self::once())
-                ->method('atPath')
-                ->willReturn($violation);
-            $violation->expects(self::once())
-                ->method('addViolation');
-            $context->expects(self::once())
-                ->method('buildViolation')
-                ->willReturn($violation);
-        } else {
-            $context
-                ->expects(self::never())
+        if (!$expectedViolation) {
+            $context->expects(self::never())
                 ->method('buildViolation');
+
+            return $context;
         }
+
+        $violation = $this->createMock(ConstraintViolationBuilderInterface::class);
+        $violation->expects(self::once())
+            ->method('atPath')
+            ->willReturn($violation);
+        $violation->expects(self::once())
+            ->method('addViolation');
+        $context->expects(self::once())
+            ->method('buildViolation')
+            ->willReturn($violation);
 
         return $context;
     }
