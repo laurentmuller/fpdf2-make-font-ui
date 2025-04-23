@@ -10,9 +10,9 @@
 {% endmacro %}
 
 <div>
-    <button id="theme-switcher" type="button"
+    <button id="theme-switcher" type="button" title="{{ 'theme.title'|trans }}"  aria-expanded="false"
             class="btn btn-link p-1 dropdown-toggle d-flex align-items-center text-body text-decoration-none"
-            type="button" title="{{ 'theme.title'|trans }}" aria-expanded="false" data-bs-toggle="dropdown">
+            data-bs-toggle="dropdown">
         <i class="theme-icon fa-solid fa-circle-half-stroke"></i>
         <span class="theme-text d-none block mx-1">{{ 'theme.auto'|trans }}</span>
     </button>

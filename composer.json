@@ -23,6 +23,7 @@
         "php": "^8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-openssl": "*",
         "ext-zip": "*",
         "laurentmuller/fpdf2-make-font": "^1.0",
         "sensiolabs/minify-bundle": "^1.1",
@@ -116,17 +117,27 @@
         "post-update-cmd": [
 
         ],
+        "app-lint": [
+            "@php bin/console lint:yaml translations .github/workflows --parse-tags",
+            "@php bin/console lint:twig templates",
+            "@php bin/console lint:container",
+            "@composer validate --strict"
+        ],
         "app-fixer": "vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --dry-run",
         "app-fixer-fix": "vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff",
         "app-rector": "vendor-bin/rector/vendor/bin/rector process --dry-run --config rector.php",
         "app-rector-fix": "vendor-bin/rector/vendor/bin/rector process --config rector.php",
+        "app-twig": "vendor-bin/twig-cs-fixer/vendor/bin/twig-cs-fixer lint --config=.twig-cs-fixer.php",
+        "app-twig-fix": "vendor-bin/twig-cs-fixer/vendor/bin/twig-cs-fixer lint --fix --config=.twig-cs-fixer.php",
         "app-psalm": "vendor-bin/psalm/vendor/bin/psalm --config psalm.xml",
         "app-stan": "vendor-bin/phpstan/vendor/bin/phpstan analyse --configuration phpstan.neon --memory-limit 2G",
         "app-test": "vendor/bin/phpunit",
         "app-markdown": "markdownlint-cli2",
         "app-all": [
+            "@app-lint",
             "@app-fixer",
             "@app-rector",
+            "@app-twig",
             "@app-psalm",
             "@app-stan",
             "@app-test",

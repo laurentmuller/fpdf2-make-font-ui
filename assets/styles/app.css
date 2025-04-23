@@ -13,8 +13,8 @@
 img.locale {
     position: relative;
     display: inline-block;
-    width: 1.333333em;
-    line-height: 1em;
+    width: 1.3333rem;
+    line-height: 1rem;
 }
 
 html[data-bs-theme=dark] .btn.btn-dark {

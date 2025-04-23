@@ -4,13 +4,6 @@ import 'bootstrap';
 
 (() => {
     'use strict'
-    // const afmFile = document.getElementById('afmFile');
-    // fontFile.addEventListener('change', () => {
-    //     const required = fontFile.files.length !== 0
-    //         && fontFile.files[0].name.endsWith('.pfb');
-    //     // afmFile.required = required;
-    //     //afmFile.disabled = !required
-    // });
 
     const form = document.getElementById('data')
     const fontFile = document.getElementById('fontFile');
@@ -27,7 +20,7 @@ import 'bootstrap';
             element.classList.remove('is-invalid')
         })
     }
-    form.addEventListener('submit', event => {
+    form.addEventListener('submit', () => {
         resetElements()
     });
     reset.addEventListener('click', () => {
@@ -37,7 +30,6 @@ import 'bootstrap';
         resetElements()
         form.reset();
         fontFile.focus();
-        // document.getElementById('fontFile').dispatchEvent(new Event('change'));
     })
     encoding.addEventListener('change', () => {
         localStorage.setItem('make-font-encoding', encoding.value);

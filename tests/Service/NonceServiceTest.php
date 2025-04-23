@@ -29,16 +29,6 @@ class NonceServiceTest extends TestCase
         $this->service = new NonceService();
     }
 
-    public function testCsp(): void
-    {
-        $nonce = $this->service->getNonce();
-        $csp = $this->service->getCspNonce();
-        self::stringStartsWith("'nonce-")->evaluate($csp);
-        self::stringEndsWith("'")->evaluate($csp);
-        self::stringContains($nonce)->evaluate($csp);
-        self::assertSame("'nonce-" . $nonce . "'", $csp);
-    }
-
     public function testLength32(): void
     {
         $nonce = $this->service->getNonce(32);

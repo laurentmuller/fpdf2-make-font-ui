@@ -72,7 +72,6 @@ class MakeFontQueryType extends AbstractType
                 'help' => 'helps.encoding',
                 'choice_translation_domain' => false,
                 'choices' => FontMaker::getEncodings(),
-                'preferred_choices' => [FontMaker::DEFAULT_ENCODING],
             ]
         );
     }
