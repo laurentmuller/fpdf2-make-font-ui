@@ -30,7 +30,7 @@ class LocaleController extends AbstractController
     {
         $session = $requestStack->getSession();
         $session->set(self::LOCALE_KEY, $locale);
-        $url = $request->headers->get('referer') ?? '/';
+        $url = $request->headers->get('referer') ?? IndexController::INDEX_URL;
 
         return $this->redirect($url);
     }

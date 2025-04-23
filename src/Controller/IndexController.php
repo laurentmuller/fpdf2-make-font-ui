@@ -28,6 +28,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
+    public const INDEX_URL = '/';
+
     public function __construct(
         #[Autowire('%kernel.project_dir%')]
         private readonly string $projectDir,
@@ -35,7 +37,7 @@ class IndexController extends AbstractController
     ) {
     }
 
-    #[Route('/', name: 'index')]
+    #[Route(self::INDEX_URL, name: 'index')]
     public function __invoke(Request $request): Response
     {
         $error = null;
