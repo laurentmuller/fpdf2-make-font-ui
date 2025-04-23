@@ -25,7 +25,11 @@ class LocaleController extends AbstractController
     public const LOCALE_FR = 'fr';
     public const LOCALE_KEY = '_locale';
 
-    #[Route('/locale/{locale}', name: 'switch_locale', requirements: ['locale' => self::LOCALE_EN . '|' . self::LOCALE_FR])]
+    #[Route(
+        path: '/locale/{locale}',
+        name: 'switch_locale',
+        requirements: ['locale' => self::LOCALE_EN . '|' . self::LOCALE_FR]
+    )]
     public function __invoke(string $locale, Request $request, RequestStack $requestStack): RedirectResponse
     {
         $session = $requestStack->getSession();

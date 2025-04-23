@@ -41,6 +41,13 @@ import 'bootstrap';
         localStorage.setItem('make-font-subset', JSON.stringify(subset.checked))
     })
 
+    document.querySelectorAll('.form-text.help-text').forEach(element => {
+        const input = element.closest('div.mb-3').querySelector('input, select');
+        element.addEventListener('click', () => {
+            input.focus();
+        })
+    })
+
     let value = localStorage.getItem('make-font-encoding');
     if (value) {
         encoding.value = value

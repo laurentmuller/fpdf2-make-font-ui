@@ -31,6 +31,7 @@
         "symfony/asset-mapper": "7.2.*",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
+        "symfony/filesystem": "7.2.*",
         "symfony/flex": "^2.5",
         "symfony/form": "7.2.*",
         "symfony/framework-bundle": "7.2.*",
@@ -117,6 +118,7 @@
         "post-update-cmd": [
 
         ],
+        "app-compile": "@php bin/console asset-map:compile",
         "app-lint": [
             "@php bin/console lint:yaml translations .github/workflows --parse-tags",
             "@php bin/console lint:twig templates",
