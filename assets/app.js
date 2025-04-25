@@ -5,12 +5,14 @@ import 'bootstrap';
 (() => {
     'use strict'
 
-    const form = document.getElementById('data')
+    const form = document.getElementById('data-form')
     const fontFile = document.getElementById('fontFile');
+    const afmFile = document.getElementById('afmFile');
     const encoding = document.getElementById('encoding');
     const embed = document.getElementById('embed');
     const subset = document.getElementById('subset');
     const reset = document.getElementById('erase')
+    const afmLabel = afmFile.parentElement.querySelector('label');
 
     const resetElements = function () {
         document.querySelectorAll('.alert, .invalid-feedback').forEach(element => {
@@ -19,10 +21,27 @@ import 'bootstrap';
         document.querySelectorAll('.is-invalid').forEach(element => {
             element.classList.remove('is-invalid')
         })
+        afmLabel.classList.remove('required');
     }
-    form.addEventListener('submit', () => {
+
+    form.addEventListener('submit', (e) => {
         resetElements()
     });
+
+    fontFile.addEventListener('change', () => {
+        let required = false;
+        if (fontFile.files.length) {
+            const file = fontFile.files[0];
+            const ext = file.name.split('.').pop();
+            required = 'pfb' === ext.toLowerCase();
+        }
+        if (required) {
+            afmLabel.classList.add('required');
+        } else {
+            afmLabel.classList.remove('required');
+        }
+    })
+
     reset.addEventListener('click', () => {
         localStorage.removeItem('make-font-encoding');
         localStorage.removeItem('make-font-embed');

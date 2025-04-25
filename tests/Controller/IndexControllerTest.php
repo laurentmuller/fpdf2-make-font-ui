@@ -31,6 +31,18 @@ class IndexControllerTest extends WebTestCase
         $this->submitForm($values);
     }
 
+    public function testPostEmbed(): void
+    {
+        $values = [
+            'fontFile' => $this->createUploadedFile('helvetica.ttf'),
+            'afmFile' => null,
+            'encoding' => 'cp1252',
+            'embed' => true,
+            'subset' => true,
+        ];
+        $this->submitForm($values);
+    }
+
     public function testPostPFB(): void
     {
         $values = [

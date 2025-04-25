@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Controller\LocaleController;
 use App\Model\MakeFontQuery;
 use App\Model\MakeFontResult;
 use fpdf\FontMaker;
@@ -50,15 +51,14 @@ readonly class MakeFontService
         $fontFile = $this->moveUploadedFile($targetPath, $fontFile);
         $this->moveUploadedFile($targetPath, $afmFile);
 
-        $fontFileName = $fontFile->getBasename();
-        $baseName = \substr($fontFileName, 0, -3);
+        $baseName = $this->getBaseName($fontFile);
         $phpFile = Path::join($targetPath, $baseName . 'php');
         $compressedFile = Path::join($targetPath, $baseName . 'z');
 
         try {
             \chdir($targetPath);
             $content = $this->makeFont(
-                $fontFileName,
+                $fontFile->getBasename(),
                 $query->encoding,
                 $query->embed,
                 $query->subset
@@ -100,10 +100,20 @@ readonly class MakeFontService
         return 'pfb' === $ext ? $query->afmFile : null;
     }
 
+    private function getBaseName(File $file): string
+    {
+        return $file->getBasename($file->getExtension());
+    }
+
     private function getFontFile(MakeFontQuery $query): UploadedFile
     {
         /** @phpstan-var UploadedFile */
         return $query->fontFile;
+    }
+
+    private function getLocale(): string
+    {
+        return $this->requestStack->getSession()->get(LocaleController::LOCALE_KEY, LocaleController::LOCALE_EN);
     }
 
     private function getTargetPath(): string
@@ -117,6 +127,8 @@ readonly class MakeFontService
 
     private function makeFont(string $fontFile, string $encoding, bool $embed, bool $subset): ?string
     {
+        $this->fontMaker->setLocale($this->getLocale());
+
         try {
             \ob_start();
             $this->fontMaker->makeFont(

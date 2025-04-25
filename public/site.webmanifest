@@ -25,24 +25,24 @@
     "screenshots": [
         {
             "src": "images/ui_light_wide.png",
-            "sizes": "658x585",
+            "sizes": "639x609",
             "type": "image/png",
             "form_factor": "wide"
         },
         {
             "src": "images/ui_dark_wide.png",
-            "sizes": "658x585",
+            "sizes": "639x609",
             "type": "image/png",
             "form_factor": "wide"
         },
         {
             "src": "images/ui_light_mobile.png",
-            "sizes": "376x667",
+            "sizes": "456x693",
             "type": "image/png"
         },
         {
             "src": "images/ui_dark_mobile.png",
-            "sizes": "376x667",
+            "sizes": "456x693",
             "type": "image/png"
         }
     ]

@@ -1,3 +1,4 @@
 query:
     fontFile: La police de caractères est requise.
     afmFile: Le fichier AFM est requis pour une police PostScript de type 1.
+    encoding: Un encodage doit être sélectionné.

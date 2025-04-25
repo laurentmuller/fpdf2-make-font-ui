@@ -17,6 +17,7 @@ use App\Form\MakeFontQueryType;
 use App\Model\MakeFontQuery;
 use App\Service\MakeFontService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -39,20 +40,19 @@ class IndexController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $result = $this->service->generate($query);
             if ($result->isSuccess()) {
-                $this->sendFile($result->fileName);
+                return $this->sendFile($result->fileName);
             }
         }
 
         return $this->render('index.html.twig', [
-            'form' => $form,
             'result' => $result,
+            'form' => $form,
         ]);
     }
 
-    private function sendFile(string $file): void
+    private function sendFile(string $file): BinaryFileResponse
     {
-        $this->file($file)
-            ->deleteFileAfterSend()
-            ->send();
+        return $this->file($file)
+            ->deleteFileAfterSend();
     }
 }

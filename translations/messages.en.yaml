@@ -1,3 +1,5 @@
+form:
+    required: Required value
 query:
     title: FPDF2 Make Font
     generate: Generate
