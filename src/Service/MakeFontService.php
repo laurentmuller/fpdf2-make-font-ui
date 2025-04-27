@@ -113,7 +113,9 @@ readonly class MakeFontService
 
     private function getLocale(): string
     {
-        return $this->requestStack->getSession()->get(LocaleController::LOCALE_KEY, LocaleController::LOCALE_EN);
+        /** @phpstan-var string */
+        return $this->requestStack->getSession()
+            ->get(LocaleController::LOCALE_KEY, LocaleController::LOCALE_EN);
     }
 
     private function getTargetPath(): string
