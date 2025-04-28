@@ -10,6 +10,10 @@
                         <h1 class="card-title h5 my-2 me-auto">{{ block('title') }}</h1>
                         {{ include('locale_switcher.html.twig') }}
                         {{ include('theme_switcher.html.twig') }}
+                        <a href="https://github.com/laurentmuller/fpdf2-make-font-ui" target="_blank"
+                           class="ms-1 btn btn-link text-body p-1" title="{{ 'form.source'|trans }}">
+                            <i class="fa-fw fa-brands fa-github"></i>
+                        </a>
                     </div>
                     <div class="card-body">
                         {% if result and result.exception %}

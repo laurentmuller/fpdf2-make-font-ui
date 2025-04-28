@@ -24,3 +24,6 @@ jobs:
 
             -   name: Validate Composer
                 run: composer validate --strict
+
+            -   name: Audit Composer
+                run: composer audit

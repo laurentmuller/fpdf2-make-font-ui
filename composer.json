@@ -123,7 +123,8 @@
             "@php bin/console lint:yaml translations .github/workflows --parse-tags",
             "@php bin/console lint:twig templates",
             "@php bin/console lint:container",
-            "@composer validate --strict"
+            "@composer validate --strict",
+            "@composer audit"
         ],
         "app-fixer": "vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff --dry-run",
         "app-fixer-fix": "vendor-bin/php-cs-fixer/vendor/bin/php-cs-fixer fix --diff",

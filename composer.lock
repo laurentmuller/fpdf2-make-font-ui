@@ -89,16 +89,16 @@
         },
         {
             "name": "laurentmuller/fpdf2-make-font",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laurentmuller/fpdf2-make-font.git",
-                "reference": "03d3287282102058328b6afabc7446f7a4bfc548"
+                "reference": "9ed3d8a03074fbd065f4112eee5947baca7cb6a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/03d3287282102058328b6afabc7446f7a4bfc548",
-                "reference": "03d3287282102058328b6afabc7446f7a4bfc548",
+                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/9ed3d8a03074fbd065f4112eee5947baca7cb6a6",
+                "reference": "9ed3d8a03074fbd065f4112eee5947baca7cb6a6",
                 "shasum": ""
             },
             "require": {
@@ -138,9 +138,9 @@
             "description": "FPDF2 make font is a PHP application to generate fonts.",
             "support": {
                 "issues": "https://github.com/laurentmuller/fpdf2-make-font/issues",
-                "source": "https://github.com/laurentmuller/fpdf2-make-font/tree/1.0.6"
+                "source": "https://github.com/laurentmuller/fpdf2-make-font/tree/1.0.7"
             },
-            "time": "2025-04-24T15:46:18+00:00"
+            "time": "2025-04-25T13:32:43+00:00"
         },
         {
             "name": "psr/cache",
@@ -6697,21 +6697,21 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.62.1",
+            "version": "v1.63.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "468ff2708200c95ebc0d85d3174b6c6711b8a590"
+                "reference": "69478ab39bc303abfbe3293006a78b09a8512425"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/468ff2708200c95ebc0d85d3174b6c6711b8a590",
-                "reference": "468ff2708200c95ebc0d85d3174b6c6711b8a590",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/69478ab39bc303abfbe3293006a78b09a8512425",
+                "reference": "69478ab39bc303abfbe3293006a78b09a8512425",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^2.0",
-                "nikic/php-parser": "^4.18|^5.0",
+                "nikic/php-parser": "^5.0",
                 "php": ">=8.1",
                 "symfony/config": "^6.4|^7.0",
                 "symfony/console": "^6.4|^7.0",
@@ -6769,7 +6769,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/maker-bundle/issues",
-                "source": "https://github.com/symfony/maker-bundle/tree/v1.62.1"
+                "source": "https://github.com/symfony/maker-bundle/tree/v1.63.0"
             },
             "funding": [
                 {
@@ -6785,7 +6785,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-15T00:21:40+00:00"
+            "time": "2025-04-26T01:41:37+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",

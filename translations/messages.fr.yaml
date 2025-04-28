@@ -1,5 +1,6 @@
 form:
     required: Valeur requise
+    source: Accéder au code source sur GitHub
 query:
     title: FPDF2 Make Font
     generate: Générer
