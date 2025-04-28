@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-use App\Controller\LocaleController;
+use fpdf\Translator;
 use Symfony\Config\FrameworkConfig;
 
 return static function (FrameworkConfig $framework): void {
@@ -21,12 +21,12 @@ return static function (FrameworkConfig $framework): void {
         ->name('MAKE_FONT_SESSION_ID')
         ->enabled(true);
 
-    $framework->defaultLocale(LocaleController::LOCALE_EN)
-        ->enabledLocales([LocaleController::LOCALE_EN, LocaleController::LOCALE_FR]);
+    $framework->defaultLocale(Translator::DEFAULT_LOCALE)
+        ->enabledLocales(Translator::ALLOWED_LOCALES);
 
     $framework->translator()
         ->defaultPath('%kernel.project_dir%/translations')
-        ->fallbacks(LocaleController::LOCALE_EN);
+        ->fallbacks(Translator::DEFAULT_LOCALE);
 
     $framework->csrfProtection()
         ->enabled(true);

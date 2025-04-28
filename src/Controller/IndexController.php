@@ -24,21 +24,19 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
-    public const INDEX_URL = '/';
+    public const ROUTE_NAME = 'index';
+    public const ROUTE_URL = '/';
 
-    public function __construct(private readonly MakeFontService $service)
-    {
-    }
-
-    #[Route(self::INDEX_URL, name: 'index')]
-    public function __invoke(Request $request): Response
+    #[Route(path: self::ROUTE_URL, name: self::ROUTE_NAME)]
+    public function __invoke(Request $request, MakeFontService $service): Response
     {
         $result = null;
         $query = new MakeFontQuery();
         $form = $this->createForm(MakeFontQueryType::class, $query);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->service->generate($query);
+            $locale = $request->getLocale();
+            $result = $service->generate($query, $locale);
             if ($result->isSuccess()) {
                 return $this->sendFile($result->fileName);
             }

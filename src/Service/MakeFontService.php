@@ -13,30 +13,25 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Controller\LocaleController;
 use App\Model\MakeFontQuery;
 use App\Model\MakeFontResult;
 use fpdf\FontMaker;
 use fpdf\MakeFontException;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use fpdf\Translator;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 readonly class MakeFontService
 {
     public function __construct(
-        #[Autowire('%kernel.project_dir%')]
-        private string $projectDir,
-        private RequestStack $requestStack,
         private Filesystem $filesystem,
         private FontMaker $fontMaker
     ) {
     }
 
-    public function generate(MakeFontQuery $query): MakeFontResult
+    public function generate(MakeFontQuery $query, string $locale = Translator::DEFAULT_LOCALE): MakeFontResult
     {
         $content = null;
         $exception = null;
@@ -57,6 +52,7 @@ readonly class MakeFontService
 
         try {
             \chdir($targetPath);
+            $this->updateLocale($locale);
             $content = $this->makeFont(
                 $fontFile->getBasename(),
                 $query->encoding,
@@ -111,26 +107,17 @@ readonly class MakeFontService
         return $query->fontFile;
     }
 
-    private function getLocale(): string
-    {
-        /** @phpstan-var string */
-        return $this->requestStack->getSession()
-            ->get(LocaleController::LOCALE_KEY, LocaleController::LOCALE_EN);
-    }
-
     private function getTargetPath(): string
     {
-        return Path::join(
-            $this->projectDir,
-            'uploads',
-            $this->requestStack->getSession()->getId()
-        );
+        return Path::join(\sys_get_temp_dir(), \uniqid('font_'));
     }
 
-    private function makeFont(string $fontFile, string $encoding, bool $embed, bool $subset): ?string
-    {
-        $this->fontMaker->setLocale($this->getLocale());
-
+    private function makeFont(
+        string $fontFile,
+        string $encoding,
+        bool $embed,
+        bool $subset
+    ): ?string {
         try {
             \ob_start();
             $this->fontMaker->makeFont(
@@ -162,5 +149,10 @@ readonly class MakeFontService
     private function registerShutdown(string $path): void
     {
         \register_shutdown_function(fn () => $this->filesystem->remove($path));
+    }
+
+    private function updateLocale(string $locale): void
+    {
+        $this->fontMaker->setLocale($locale);
     }
 }

@@ -12,6 +12,7 @@
 declare(strict_types=1);
 
 use fpdf\FontMaker;
+use fpdf\Translator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $container): void {
@@ -19,10 +20,12 @@ return static function (ContainerConfigurator $container): void {
     $services->defaults()
         ->autowire()
         ->autoconfigure();
+    $services->set(FontMaker::class, FontMaker::class);
 
     $path = __DIR__ . '/../src/';
     $services->load('App\\', $path . '*')
         ->exclude($path . 'Kernel.php');
 
-    $services->set(FontMaker::class, FontMaker::class);
+    $container->parameters()
+        ->set('supported_locales', \implode('|', Translator::ALLOWED_LOCALES));
 };

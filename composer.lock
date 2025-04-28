@@ -89,16 +89,16 @@
         },
         {
             "name": "laurentmuller/fpdf2-make-font",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laurentmuller/fpdf2-make-font.git",
-                "reference": "9ed3d8a03074fbd065f4112eee5947baca7cb6a6"
+                "reference": "9986acf982945c221cb7ec9079a21fb2fc806082"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/9ed3d8a03074fbd065f4112eee5947baca7cb6a6",
-                "reference": "9ed3d8a03074fbd065f4112eee5947baca7cb6a6",
+                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/9986acf982945c221cb7ec9079a21fb2fc806082",
+                "reference": "9986acf982945c221cb7ec9079a21fb2fc806082",
                 "shasum": ""
             },
             "require": {
@@ -138,9 +138,9 @@
             "description": "FPDF2 make font is a PHP application to generate fonts.",
             "support": {
                 "issues": "https://github.com/laurentmuller/fpdf2-make-font/issues",
-                "source": "https://github.com/laurentmuller/fpdf2-make-font/tree/1.0.7"
+                "source": "https://github.com/laurentmuller/fpdf2-make-font/tree/1.0.8"
             },
-            "time": "2025-04-25T13:32:43+00:00"
+            "time": "2025-04-28T05:53:02+00:00"
         },
         {
             "name": "psr/cache",

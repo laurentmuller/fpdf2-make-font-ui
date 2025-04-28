@@ -16,26 +16,21 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Attribute\Route;
 
 class LocaleController extends AbstractController
 {
-    public const LOCALE_EN = 'en';
-    public const LOCALE_FR = 'fr';
     public const LOCALE_KEY = '_locale';
 
     #[Route(
         path: '/locale/{locale}',
         name: 'switch_locale',
-        requirements: ['locale' => self::LOCALE_EN . '|' . self::LOCALE_FR]
+        requirements: ['locale' => '%supported_locales%']
     )]
-    public function __invoke(string $locale, Request $request, RequestStack $requestStack): RedirectResponse
+    public function __invoke(string $locale, Request $request): RedirectResponse
     {
-        $session = $requestStack->getSession();
-        $session->set(self::LOCALE_KEY, $locale);
-        $url = $request->headers->get('referer') ?? IndexController::INDEX_URL;
+        $request->getSession()->set(self::LOCALE_KEY, $locale);
 
-        return $this->redirect($url);
+        return $this->redirectToRoute(IndexController::ROUTE_NAME);
     }
 }

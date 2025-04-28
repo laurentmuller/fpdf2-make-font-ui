@@ -1,4 +1,4 @@
-.btn-form {
+.btn.btn-form {
     min-width: 130px;
 }
 
@@ -21,12 +21,16 @@ html[data-bs-theme=dark] .btn.btn-dark {
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
 }
 
-label.required:after {
+label.required::after {
     content: " *";
-    color:  var(--bs-danger);
+    color: var(--bs-danger);
 }
 
-span.required:before {
+span.required::before {
     content: "* ";
-    color:  var(--bs-danger);
+    color: var(--bs-danger);
+}
+
+a {
+    text-decoration: none;
 }

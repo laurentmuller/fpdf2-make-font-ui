@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ 'error.title'|trans|format(status_code, status_text) }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="card border-danger">
+                    <div class="card-header d-flex align-items-center text-bg-danger">
+                        <h1 class="card-title h5 my-2 me-auto">{{ block('title') }}</h1>
+                        {{ include('theme_switcher.html.twig') }}
+                    </div>
+                    <div class="card-body">
+                        <p>{{ 'error.description'|trans }} {{ 'error.link'|trans|format(path('index'))|raw }}</p>
+                        {% if exception is defined %}
+                            <hr>
+                            <p class="mb-1">{{ 'error.message'|trans|format(exception.message) }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block importmap %}
+    {{ importmap('error', {nonce: csp_nonce()}) }}
+{% endblock %}

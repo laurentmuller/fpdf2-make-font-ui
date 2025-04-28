@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use App\Controller\LocaleController;
+use fpdf\Translator;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -31,7 +32,7 @@ readonly class LocaleSubscriber
         $request = $event->getRequest();
         $session = $this->requestStack->getSession();
         /** @phpstan-var string $locale */
-        $locale = $session->get(LocaleController::LOCALE_KEY, LocaleController::LOCALE_EN);
+        $locale = $session->get(LocaleController::LOCALE_KEY, Translator::DEFAULT_LOCALE);
         $request->setLocale($locale);
     }
 }

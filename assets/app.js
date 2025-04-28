@@ -24,7 +24,7 @@ import 'bootstrap';
         afmLabel.classList.remove('required');
     }
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', () => {
         resetElements()
     });
 

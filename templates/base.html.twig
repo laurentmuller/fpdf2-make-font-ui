@@ -16,7 +16,6 @@
         <script src="{{ asset('theme.js') }}" nonce="{{ csp_nonce() }}" crossorigin="anonymous"></script>
         <script defer src="https://kit.fontawesome.com/6a9ba3897a.js" nonce="{{ csp_nonce() }}" crossorigin="anonymous"></script>
         {% block importmap %}
-            {{ importmap('app', {nonce: csp_nonce()}) }}
         {% endblock %}
     {% endblock %}
 </head>

@@ -25,3 +25,8 @@ theme:
     light: Light
 locale:
     title: Select Language
+error:
+    title: Error %s. %s
+    description: An error occurred while processing your request.
+    link: Verify the URL or return to the <a href="%s">home page</a>.
+    message: 'Message: %s'

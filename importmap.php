@@ -16,6 +16,10 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'error' => [
+        'path' => './assets/error.js',
+        'entrypoint' => true,
+    ],
     'theme' => [
         'path' => './assets/theme.js',
     ],

@@ -25,3 +25,8 @@ theme:
     light: Claire
 locale:
     title: Sélectionner la langue
+error:
+    title: Erreur %s. %s
+    description: Une erreur s'est produite lors du traitement de votre demande.
+    link: Vérifiez l'URL ou retournez à la <a href="%s">page d'accueil</a>.
+    message: 'Message : %s'
