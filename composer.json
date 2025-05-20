@@ -117,7 +117,7 @@
         "post-update-cmd": [
 
         ],
-        "app-compile": "@php bin/console asset-map:compile",
+        "app-compile": "@php bin/console asset-map:compile --no-debug",
         "app-lint": [
             "@php bin/console lint:yaml translations .github/workflows --parse-tags",
             "@php bin/console lint:twig templates",
