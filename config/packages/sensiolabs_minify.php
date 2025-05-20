@@ -18,5 +18,6 @@ return static function (SensiolabsMinifyConfig $sensiolabsMinify): void {
         ->downloadBinary(true);
 
     $sensiolabsMinify->assetMapper()
-        ->ignorePaths(['*.min.js', '*.min.css']);
+        ->ignorePaths(['*.min.js', '*.min.css'])
+        ->ignoreVendor(false);
 };

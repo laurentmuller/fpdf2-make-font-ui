@@ -23,22 +23,13 @@ return [
     'theme' => [
         'path' => './assets/theme.js',
     ],
-    '@symfony/stimulus-bundle' => [
-        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
-    ],
-    '@hotwired/stimulus' => [
-        'version' => '3.2.2',
-    ],
-    '@hotwired/turbo' => [
-        'version' => '8.0.13',
-    ],
     'bootstrap' => [
         'version' => '5.3.6',
     ],
     '@popperjs/core' => [
         'version' => '2.11.8',
     ],
-    'bootstrap/dist/css/bootstrap.min.css' => [
+    'bootstrap/dist/css/bootstrap.css' => [
         'version' => '5.3.6',
         'type' => 'css',
     ],
