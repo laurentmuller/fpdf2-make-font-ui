@@ -20,6 +20,7 @@ return static function (ContainerConfigurator $container): void {
     $services->defaults()
         ->autowire()
         ->autoconfigure();
+
     $services->set(FontMaker::class, FontMaker::class);
 
     $path = __DIR__ . '/../src/';

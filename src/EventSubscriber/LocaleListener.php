@@ -16,23 +16,18 @@ namespace App\EventSubscriber;
 use App\Controller\LocaleController;
 use fpdf\Translator;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-readonly class LocaleSubscriber
+readonly class LocaleListener
 {
-    public function __construct(private RequestStack $requestStack)
-    {
-    }
-
     #[AsEventListener(event: KernelEvents::REQUEST, priority: 100)]
     public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
-        $session = $this->requestStack->getSession();
-        /** @phpstan-var string $locale */
-        $locale = $session->get(LocaleController::LOCALE_KEY, Translator::DEFAULT_LOCALE);
-        $request->setLocale($locale);
+        $locale = $request->cookies->getString(LocaleController::LOCALE_KEY, Translator::DEFAULT_LOCALE);
+        if (Translator::isAllowedLocale($locale)) {
+            $request->setLocale($locale);
+        }
     }
 }

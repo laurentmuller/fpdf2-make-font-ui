@@ -20,19 +20,21 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class MakeFontQuery
 {
+    /**
+     * @param ?UploadedFile $fontFile the font file (.ttf, .otf, .pfb)
+     * @param ?UploadedFile $afmFile  the AFM file for a Type 1 PostScript font (.pfb).
+     * @param string        $encoding the font encoding
+     * @param bool          $embed    the embedded font
+     * @param bool          $subset   the sub-setting characters
+     */
     public function __construct(
-        /** The font file. */
         #[Assert\NotNull(message: 'query.fontFile')]
         public ?UploadedFile $fontFile = null,
-        /** The AFM file for a Type 1 PostScript font (.pfb). */
         public ?UploadedFile $afmFile = null,
-        /** The font encoding. */
         #[Assert\NotBlank]
         #[Assert\Choice(callback: [FontMaker::class, 'getEncodings'], message: 'query.encoding')]
         public string $encoding = FontMaker::DEFAULT_ENCODING,
-        /** The embedded font. */
         public bool $embed = true,
-        /** The sub-setting characters. */
         public bool $subset = true
     ) {
     }

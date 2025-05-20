@@ -27,7 +27,11 @@ class IndexController extends AbstractController
     public const ROUTE_NAME = 'index';
     public const ROUTE_URL = '/';
 
-    #[Route(path: self::ROUTE_URL, name: self::ROUTE_NAME)]
+    #[Route(
+        path: self::ROUTE_URL,
+        name: self::ROUTE_NAME,
+        methods: [Request::METHOD_GET, Request::METHOD_POST],
+    )]
     public function __invoke(Request $request, MakeFontService $service): Response
     {
         $result = null;
@@ -48,9 +52,9 @@ class IndexController extends AbstractController
         ]);
     }
 
-    private function sendFile(string $file): BinaryFileResponse
+    private function sendFile(string $fileName): BinaryFileResponse
     {
-        return $this->file($file)
+        return $this->file($fileName)
             ->deleteFileAfterSend();
     }
 }

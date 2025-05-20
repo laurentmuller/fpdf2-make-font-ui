@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Controller;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,10 +25,7 @@ class LocaleControllerTest extends WebTestCase
         $client->followRedirects();
         $client->request('GET', '/locale/en');
         self::assertResponseIsSuccessful();
-        $locale = $client->getRequest()
-            ->getSession()
-            ->get('_locale');
-        self::assertSame('en', $locale);
+        self::assertResponseIsLocale($client, 'en');
     }
 
     public function testLocaleFrench(): void
@@ -36,10 +34,7 @@ class LocaleControllerTest extends WebTestCase
         $client->followRedirects();
         $client->request('GET', '/locale/fr');
         self::assertResponseIsSuccessful();
-        $locale = $client->getRequest()
-            ->getSession()
-            ->get('_locale');
-        self::assertSame('fr', $locale);
+        self::assertResponseIsLocale($client, 'fr');
     }
 
     public function testLocaleInvalid(): void
@@ -48,5 +43,16 @@ class LocaleControllerTest extends WebTestCase
         $client->followRedirects();
         $client->request('GET', '/locale/fake');
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+    }
+
+    protected static function assertResponseIsLocale(KernelBrowser $client, string $expected): void
+    {
+        $cookies = $client->getRequest()->cookies;
+        $locale = $cookies->getString('_locale');
+        self::assertSame($expected, $locale);
+
+        $client->getRequest()->cookies;
+        $locale = $cookies->getString('_locale');
+        self::assertSame($expected, $locale);
     }
 }

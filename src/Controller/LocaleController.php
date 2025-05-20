@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
@@ -25,12 +26,22 @@ class LocaleController extends AbstractController
     #[Route(
         path: '/locale/{locale}',
         name: 'switch_locale',
-        requirements: ['locale' => '%supported_locales%']
+        requirements: ['locale' => '%supported_locales%'],
+        methods: Request::METHOD_GET
     )]
-    public function __invoke(string $locale, Request $request): RedirectResponse
+    public function __invoke(string $locale): RedirectResponse
     {
-        $request->getSession()->set(self::LOCALE_KEY, $locale);
+        $response = $this->redirectToRoute(IndexController::ROUTE_NAME);
+        $response->headers->setCookie($this->createCookie($locale));
 
-        return $this->redirectToRoute(IndexController::ROUTE_NAME);
+        return $response;
+    }
+
+    public function createCookie(string $locale): Cookie
+    {
+        return Cookie::create(self::LOCALE_KEY)
+            ->withExpires(new \DateTime('+1 year'))
+            ->withValue($locale)
+            ->withSecure();
     }
 }

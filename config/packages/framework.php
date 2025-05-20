@@ -30,6 +30,7 @@ return static function (FrameworkConfig $framework): void {
 
     $framework->csrfProtection()
         ->enabled(true);
+
     $framework->form()
         ->csrfProtection()
         ->enabled(true)

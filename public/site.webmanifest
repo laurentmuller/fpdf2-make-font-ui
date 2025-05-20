@@ -25,13 +25,13 @@
     "screenshots": [
         {
             "src": "images/ui_light_wide.png",
-            "sizes": "639x609",
+            "sizes": "636x609",
             "type": "image/png",
             "form_factor": "wide"
         },
         {
             "src": "images/ui_dark_wide.png",
-            "sizes": "639x609",
+            "sizes": "636x609",
             "type": "image/png",
             "form_factor": "wide"
         },

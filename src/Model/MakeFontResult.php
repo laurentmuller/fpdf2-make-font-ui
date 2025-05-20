@@ -17,6 +17,11 @@ use fpdf\MakeFontException;
 
 class MakeFontResult
 {
+    /**
+     * @param ?string            $fileName  the generated file (.php or .zip)
+     * @param ?string            $content   the generated content
+     * @param ?MakeFontException $exception the exception
+     */
     public function __construct(
         public ?string $fileName = null,
         public ?string $content = null,

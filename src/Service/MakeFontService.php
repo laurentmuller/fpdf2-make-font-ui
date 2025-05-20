@@ -23,6 +23,9 @@ use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Service to parse a font query and generate a font result.
+ */
 readonly class MakeFontService
 {
     public function __construct(
