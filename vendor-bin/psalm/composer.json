@@ -2,7 +2,8 @@
     "require": {
         "php": "^8.2",
         "vimeo/psalm": "^6.0",
-        "psalm/plugin-phpunit": "^0.19"
+        "psalm/plugin-phpunit": "^0.19",
+        "psalm/plugin-symfony": "^5.0"
     },
     "config": {
         "preferred-install": {

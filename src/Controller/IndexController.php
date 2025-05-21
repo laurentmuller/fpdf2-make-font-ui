@@ -17,11 +17,14 @@ use App\Form\MakeFontQueryType;
 use App\Model\MakeFontQuery;
 use App\Service\MakeFontService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[AsController]
 class IndexController extends AbstractController
 {
     public const ROUTE_NAME = 'index';
@@ -37,8 +40,7 @@ class IndexController extends AbstractController
         $result = null;
         $query = new MakeFontQuery();
         $form = $this->createForm(MakeFontQueryType::class, $query);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($this->handleForm($request, $form)) {
             $locale = $request->getLocale();
             $result = $service->generate($query, $locale);
             if ($result->isSuccess()) {
@@ -50,6 +52,13 @@ class IndexController extends AbstractController
             'result' => $result,
             'form' => $form,
         ]);
+    }
+
+    private function handleForm(Request $request, FormInterface $form): bool
+    {
+        $form->handleRequest($request);
+
+        return $form->isSubmitted() && $form->isValid();
     }
 
     private function sendFile(string $fileName): BinaryFileResponse

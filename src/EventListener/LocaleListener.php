@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace App\EventSubscriber;
+namespace App\EventListener;
 
 use App\Controller\LocaleController;
 use fpdf\Translator;

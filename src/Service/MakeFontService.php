@@ -50,27 +50,18 @@ readonly class MakeFontService
         $this->moveUploadedFile($targetPath, $afmFile);
 
         $baseName = $this->getBaseName($fontFile);
-        $phpFile = Path::join($targetPath, $baseName . 'php');
-        $compressedFile = Path::join($targetPath, $baseName . 'z');
+        $phpFile = $this->join($targetPath, $baseName, 'php');
+        $compressedFile = $this->join($targetPath, $baseName, 'z');
 
         try {
             \chdir($targetPath);
             $this->updateLocale($locale);
-            $content = $this->makeFont(
-                $fontFile->getBasename(),
-                $query->encoding,
-                $query->embed,
-                $query->subset
-            );
+            $content = $this->makeFont($fontFile->getBasename(), $query->encoding, $query->embed, $query->subset);
 
             $fileName = $phpFile;
             if ($this->filesystem->exists($compressedFile)) {
-                $fileName = Path::join($targetPath, $baseName . 'zip');
-                $this->createZipFile(
-                    $fileName,
-                    $phpFile,
-                    $compressedFile
-                );
+                $fileName = $this->join($targetPath, $baseName, 'zip');
+                $this->createZipFile($fileName, $phpFile, $compressedFile);
             }
         } catch (MakeFontException $e) {
             $exception = $e;
@@ -115,23 +106,18 @@ readonly class MakeFontService
         return Path::join(\sys_get_temp_dir(), \uniqid('font_'));
     }
 
-    private function makeFont(
-        string $fontFile,
-        string $encoding,
-        bool $embed,
-        bool $subset
-    ): ?string {
+    private function join(string $targetPath, string $baseName, string $extension): string
+    {
+        return Path::join($targetPath, $baseName . $extension);
+    }
+
+    private function makeFont(string $fontFile, string $encoding, bool $embed, bool $subset): string
+    {
         try {
             \ob_start();
-            $this->fontMaker->makeFont(
-                $fontFile,
-                $encoding,
-                $embed,
-                $subset
-            );
-            $content = (string) \ob_get_contents();
+            $this->fontMaker->makeFont($fontFile, $encoding, $embed, $subset);
 
-            return '' === $content ? null : $content;
+            return (string) \ob_get_contents();
         } finally {
             \ob_end_clean();
         }

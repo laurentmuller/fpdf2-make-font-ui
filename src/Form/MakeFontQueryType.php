@@ -51,28 +51,25 @@ class MakeFontQueryType extends AbstractType
         $builder->add(
             $id,
             CheckboxType::class,
-            [
-                'label' => 'fields.' . $id,
-                'help' => 'helps.' . $id,
+            $this->getOptions($id, [
                 'required' => false,
                 'label_attr' => [
                     'class' => 'checkbox-switch',
                 ],
-            ]
+            ])
         );
     }
 
     private function addEncoding(FormBuilderInterface $builder): void
     {
+        $id = 'encoding';
         $builder->add(
-            'encoding',
+            $id,
             ChoiceType::class,
-            [
-                'label' => 'fields.encoding',
-                'help' => 'helps.encoding',
+            $this->getOptions($id, [
                 'choice_translation_domain' => false,
                 'choices' => FontMaker::getEncodings(),
-            ]
+            ])
         );
     }
 
@@ -82,21 +79,32 @@ class MakeFontQueryType extends AbstractType
         string $accept,
         bool $autofocus = false
     ): void {
-        $attr = [
-            'accept' => $accept,
-        ];
-        if ($autofocus) {
-            $attr['autofocus'] = 'autofocus';
-        }
         $builder->add(
             $id,
             FileType::class,
+            $this->getOptions($id, [
+                'required' => false,
+                'attr' => [
+                    'accept' => $accept,
+                    'autofocus' => $autofocus,
+                ],
+            ])
+        );
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     *
+     * @return array<string, mixed>
+     */
+    private function getOptions(string $id, array $options = []): array
+    {
+        return \array_merge(
             [
                 'label' => 'fields.' . $id,
                 'help' => 'helps.' . $id,
-                'required' => false,
-                'attr' => $attr,
-            ]
+            ],
+            $options
         );
     }
 }
