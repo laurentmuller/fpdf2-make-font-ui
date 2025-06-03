@@ -35,4 +35,7 @@ return static function (FrameworkConfig $framework): void {
         ->csrfProtection()
         ->enabled(true)
         ->fieldName('csrf_token');
+
+    $framework->propertyInfo()
+        ->withConstructorExtractor(true);
 };

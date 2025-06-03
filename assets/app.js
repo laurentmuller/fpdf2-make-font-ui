@@ -36,8 +36,10 @@ import 'bootstrap';
             required = 'pfb' === ext.toLowerCase();
         }
         if (required) {
+            afmFile.disabled = false;
             afmLabel.classList.add('required');
         } else {
+            afmFile.disabled = true;
             afmLabel.classList.remove('required');
         }
     })
