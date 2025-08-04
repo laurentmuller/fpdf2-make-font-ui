@@ -3,9 +3,5 @@ global_exclude_dirs:
     - vendor
     - tests
 rules:
-    php.class_too_long:
+    web.apache_config:
         enabled: false
-    php.use_exit_function:
-        enabled: true
-        ignore_files:
-            - src/makeFont.php

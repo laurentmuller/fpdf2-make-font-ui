@@ -2,7 +2,7 @@
     {% set text = locale|locale_name(locale)|capitalize %}
     {% set href = path('switch_locale', {locale: locale}) %}
     {% set active = app.request.locale == locale ? ' active' : '' %}
-    {% set src = 'images/' ~ locale ~ '.svg' %}
+    {% set src = 'images/locale-' ~ locale ~ '.svg' %}
     <li>
         <a class="dropdown-item d-flex align-items-center{{ active }}" href="{{ href }}" aria-pressed="false">
             <img class="locale" alt="{{ text }}" src="{{ asset(src) }}">
