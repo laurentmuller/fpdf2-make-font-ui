@@ -38,7 +38,7 @@ readonly class MakeFontService
     {
         $content = null;
         $exception = null;
-        $fileName = null;
+        $zipFile = null;
 
         $fontFile = $this->getFontFile($query);
         $afmFile = $this->getAfmFile($query);
@@ -50,7 +50,7 @@ readonly class MakeFontService
         $this->moveUploadedFile($targetPath, $afmFile);
 
         $baseName = $this->getBaseName($fontFile);
-        $phpFile = $this->join($targetPath, $baseName, 'php');
+        $jsonFile = $this->join($targetPath, $baseName, 'json');
         $compressedFile = $this->join($targetPath, $baseName, 'z');
 
         try {
@@ -58,28 +58,28 @@ readonly class MakeFontService
             $this->updateLocale($locale);
             $content = $this->makeFont($fontFile->getBasename(), $query->encoding, $query->embed, $query->subset);
 
-            $fileName = $phpFile;
+            $zipFile = $jsonFile;
             if ($this->filesystem->exists($compressedFile)) {
-                $fileName = $this->join($targetPath, $baseName, 'zip');
-                $this->createZipFile($fileName, $phpFile, $compressedFile);
+                $zipFile = $this->join($targetPath, $baseName, 'zip');
+                $this->createZipFile($zipFile, $jsonFile, $compressedFile);
             }
         } catch (MakeFontException $e) {
             $exception = $e;
         }
 
         return new MakeFontResult(
-            $fileName,
+            $zipFile,
             $content,
             $exception,
         );
     }
 
-    private function createZipFile(string $zipFile, string $phpFile, string $compressedFile): void
+    private function createZipFile(string $zipFile, string $jsonFile, string $compressedFile): void
     {
         $zip = new \ZipArchive();
         $zip->open($zipFile, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
-        $zip->addFile($phpFile);
-        $zip->addFile($compressedFile);
+        $zip->addFile($jsonFile, \basename($jsonFile));
+        $zip->addFile($compressedFile, \basename($compressedFile));
         $zip->close();
     }
 
