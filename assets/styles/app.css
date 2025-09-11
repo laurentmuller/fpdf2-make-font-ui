@@ -2,10 +2,6 @@
     min-width: 130px;
 }
 
-.dropdown-item:not(.active) .fa-check {
-    display: none;
-}
-
 .form-text.help-text {
     cursor: default;
 }
@@ -22,15 +18,22 @@ html[data-bs-theme=dark] .btn.btn-dark {
 }
 
 label.required::after {
-    content: " *";
+    content: ' *';
     color: var(--bs-danger);
 }
 
 span.required::before {
-    content: "* ";
+    content: '* ';
     color: var(--bs-danger);
 }
 
-a {
-    text-decoration: none;
+svg.icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+    vertical-align: -.25rem;
+}
+
+.dropdown-item:not(.active) svg.icon.check {
+    display: none;
 }

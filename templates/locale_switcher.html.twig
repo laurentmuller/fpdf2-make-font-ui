@@ -2,12 +2,11 @@
     {% set text = locale|locale_name(locale)|capitalize %}
     {% set href = path('switch_locale', {locale: locale}) %}
     {% set active = app.request.locale == locale ? ' active' : '' %}
-    {% set src = 'images/locale-' ~ locale ~ '.svg' %}
     <li>
         <a class="dropdown-item d-flex align-items-center{{ active }}" href="{{ href }}" aria-pressed="false">
-            <img class="locale" alt="{{ text }}" src="{{ asset(src) }}">
+            <svg class="icon"><use href="#icon-{{ locale }}" /></svg>
             <span class="ms-2">{{ text }}</span>
-            <i class="ms-auto fa-solid fa-check"></i>
+            <svg class="ms-auto icon check" aria-hidden="true"><use href="#icon-check"></use></svg>
         </a>
     </li>
 {% endmacro %}
@@ -16,7 +15,7 @@
     <button id="locale-switcher" type="button" title="{{ 'locale.title'|trans }}" aria-expanded="false"
             class="btn btn-link p-1 dropdown-toggle d-flex align-items-center text-body text-decoration-none"
             data-bs-toggle="dropdown">
-        <i class="fa-solid fa-language"></i>
+        <svg class="icon"><use href="#icon-language" /></svg>
     </button>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="locale-switcher">
         {{ _self.locale_entry('en') }}

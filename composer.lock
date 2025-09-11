@@ -85,16 +85,16 @@
         },
         {
             "name": "laurentmuller/fpdf2-make-font",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laurentmuller/fpdf2-make-font.git",
-                "reference": "512bc38da3f7ce9795e58e85ec712d391b4acb14"
+                "reference": "b195e5b676b72d04041e13633a4c3fc40c11c90f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/512bc38da3f7ce9795e58e85ec712d391b4acb14",
-                "reference": "512bc38da3f7ce9795e58e85ec712d391b4acb14",
+                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/b195e5b676b72d04041e13633a4c3fc40c11c90f",
+                "reference": "b195e5b676b72d04041e13633a4c3fc40c11c90f",
                 "shasum": ""
             },
             "require": {
@@ -134,9 +134,9 @@
             "description": "FPDF2 make font is a PHP application to generate fonts.",
             "support": {
                 "issues": "https://github.com/laurentmuller/fpdf2-make-font/issues",
-                "source": "https://github.com/laurentmuller/fpdf2-make-font/tree/1.1.0"
+                "source": "https://github.com/laurentmuller/fpdf2-make-font/tree/1.1.1"
             },
-            "time": "2025-09-09T17:53:07+00:00"
+            "time": "2025-09-10T08:39:17+00:00"
         },
         {
             "name": "psr/cache",
@@ -5510,16 +5510,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.5.36",
+            "version": "11.5.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "264a87c7ef68b1ab9af7172357740dc266df5957"
+                "reference": "b87c1ad30535b40f14db1aa048e11747ba22e6ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/264a87c7ef68b1ab9af7172357740dc266df5957",
-                "reference": "264a87c7ef68b1ab9af7172357740dc266df5957",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b87c1ad30535b40f14db1aa048e11747ba22e6ff",
+                "reference": "b87c1ad30535b40f14db1aa048e11747ba22e6ff",
                 "shasum": ""
             },
             "require": {
@@ -5591,7 +5591,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.36"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.5.37"
             },
             "funding": [
                 {
@@ -5615,7 +5615,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-03T06:24:17+00:00"
+            "time": "2025-09-11T06:21:19+00:00"
         },
         {
             "name": "sebastian/cli-parser",

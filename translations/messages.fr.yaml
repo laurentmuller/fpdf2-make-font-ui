@@ -2,7 +2,7 @@ form:
     required: Valeur requise
     source: Accéder au code source sur GitHub
 query:
-    title: FPDF2 Make Font
+    title: Créateur de polices FPDF2
     generate: Générer
     reset: Réinitialiser
     gitHub: GitHub

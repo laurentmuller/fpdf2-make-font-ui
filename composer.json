@@ -111,13 +111,6 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd"
         },
-        "post-install-cmd": [
-
-        ],
-        "post-update-cmd": [
-
-        ],
-        "app-compile": "@php bin/console asset-map:compile --no-debug",
         "app-lint": [
             "@php bin/console lint:yaml translations .github/workflows --parse-tags",
             "@php bin/console lint:twig templates",
@@ -135,6 +128,9 @@
         "app-stan": "vendor-bin/phpstan/vendor/bin/phpstan analyse --configuration phpstan.neon --memory-limit 2G",
         "app-test": "vendor/bin/phpunit",
         "app-markdown": "markdownlint-cli2",
+        "app-asset-update": "@php bin/console importmap:update",
+        "app-asset-compile-debug": "@php bin/console asset-map:compile",
+        "app-asset-compile-prod": "@php bin/console asset-map:compile --no-debug",
         "app-all": [
             "@app-lint",
             "@app-fixer",
@@ -142,8 +138,8 @@
             "@app-twig",
             "@app-psalm",
             "@app-stan",
-            "@app-test",
-            "@app-markdown"
+            "@app-markdown",
+            "@app-test"
         ]
     },
     "conflict": {

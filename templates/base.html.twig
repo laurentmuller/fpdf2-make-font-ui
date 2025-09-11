@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="application-name" content="FPDF2 Make Font">
     <meta name="description" content="Allow creating fonts for FPDF2.">
-    <title>{% block title %}FPDF2{% endblock %}</title>
+    <title>{% block title %}{{ 'query.title'|trans }}{% endblock %}</title>
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon_192.png') }}">
     <link rel="icon" type="image/png" sizes="144x144" href="{{ asset('images/icon_144.png') }}">
     <link rel="manifest" type="application/manifest+json" href="{{ asset('site.webmanifest') }}">
@@ -14,7 +14,6 @@
     {% endblock %}
     {% block javascripts -%}
         <script src="{{ asset('theme.js') }}" nonce="{{ csp_nonce() }}" crossorigin="anonymous"></script>
-        <script defer src="https://kit.fontawesome.com/6a9ba3897a.js" nonce="{{ csp_nonce() }}" crossorigin="anonymous"></script>
         {% block importmap %}
         {% endblock %}
     {% endblock %}

@@ -5,6 +5,10 @@
     const THEME_LIGHT = 'light';
     const THEME_DARK = 'dark';
 
+    const TEXT_SELECTOR = '.theme-text';
+    const ICON_SELECTOR = '.theme-icon';
+    const ICON_ATTRIBUTE = 'href';
+
     const getStoredTheme = () => localStorage.getItem('make-font-theme')
     const setStoredTheme = theme => localStorage.setItem('make-font-theme', theme)
     const getMediaTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -24,21 +28,21 @@
 
     const showActiveTheme = (theme, focus = false) => {
         document.querySelectorAll('button[data-theme]').forEach(element => {
-            element.classList.remove('active')
             element.setAttribute('aria-pressed', 'false')
+            element.classList.remove('active')
         })
 
         const source = document.querySelector(`button[data-theme="${theme}"]`)
-        const sourceIcon = source.querySelector('.theme-icon')
-        const sourceText = source.querySelector('.theme-text')
+        const sourceIcon = source.querySelector(ICON_SELECTOR)
+        const sourceText = source.querySelector(TEXT_SELECTOR)
         source.setAttribute('aria-pressed', 'true')
         source.classList.add('active')
 
         const target = document.getElementById('theme-switcher')
-        const targetIcon = target.querySelector('.theme-icon')
-        const targetText = target.querySelector('.theme-text')
+        const targetIcon = target.querySelector(ICON_SELECTOR)
+        const targetText = target.querySelector(TEXT_SELECTOR)
         targetText.textContent = sourceText.textContent
-        targetIcon.setAttribute('class', sourceIcon.getAttribute('class'));
+        targetIcon.setAttribute(ICON_ATTRIBUTE, sourceIcon.getAttribute(ICON_ATTRIBUTE));
         target.setAttribute('aria-label', sourceText.textContent)
 
         if (focus) {

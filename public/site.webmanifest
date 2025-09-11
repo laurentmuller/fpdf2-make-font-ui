@@ -24,25 +24,13 @@
     ],
     "screenshots": [
         {
-            "src": "images/ui_light_wide.png",
+            "src": "images/theme-light.png",
             "sizes": "636x609",
-            "type": "image/png",
-            "form_factor": "wide"
-        },
-        {
-            "src": "images/ui_dark_wide.png",
-            "sizes": "636x609",
-            "type": "image/png",
-            "form_factor": "wide"
-        },
-        {
-            "src": "images/ui_light_mobile.png",
-            "sizes": "456x693",
             "type": "image/png"
         },
         {
-            "src": "images/ui_dark_mobile.png",
-            "sizes": "456x693",
+            "src": "images/theme-dark.png",
+            "sizes": "636x609",
             "type": "image/png"
         }
     ]

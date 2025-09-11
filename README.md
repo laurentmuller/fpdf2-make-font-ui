@@ -6,7 +6,7 @@ generate fonts.
 
 ## User interface
 
-![User Interface](public/images/ui_light_wide.png)
+![User Interface](public/images/theme-light.png)
 
 ## Fields
 
@@ -63,8 +63,9 @@ say, whether only the characters from the selected encoding should be kept in
 the embedded font. As a result, the size of the PDF file can be greatly reduced,
 especially if the original font was big.
 
-On the top right user can select the language (English or French) and the
-[site color mode](https://getbootstrap.com/docs/5.3/customize/color-modes/).
+On the top right user can select the language (English or French), the
+[site color mode](https://getbootstrap.com/docs/5.3/customize/color-modes/) and
+have access to the source code on GitHub.
 
 ## Versions
 
