@@ -6,6 +6,7 @@ query:
     generate: Générer
     reset: Réinitialiser
     gitHub: GitHub
+    download: Télécharger
 fields:
     fontFile: Police de caractères
     afmFile: Fichier AFM
@@ -25,6 +26,8 @@ theme:
     light: Claire
 locale:
     title: Sélectionner la langue
+result:
+    success: Résultats de la création
 error:
     title: Erreur %s. %s
     description: Une erreur s'est produite lors du traitement de votre demande.

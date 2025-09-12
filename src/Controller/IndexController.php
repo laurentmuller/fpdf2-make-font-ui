@@ -15,25 +15,50 @@ namespace App\Controller;
 
 use App\Form\MakeFontQueryType;
 use App\Model\MakeFontQuery;
+use App\Model\MakeFontResult;
 use App\Service\MakeFontService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
     public const ROUTE_NAME = 'index';
-    public const ROUTE_URL = '/';
+
+    private const KEY_FILE_CONTENT = 'file_content';
+    private const KEY_FILE_NAME = 'file_name';
 
     #[Route(
-        path: self::ROUTE_URL,
+        path: '/download',
+        name: 'download',
+        methods: [Request::METHOD_GET]
+    )]
+    public function download(Request $request): Response
+    {
+        $session = $request->getSession();
+        /** @phpstan-var ?string $fileName */
+        $fileName = $session->get(self::KEY_FILE_NAME);
+        /** @phpstan-var ?string $fileContent */
+        $fileContent = $session->get(self::KEY_FILE_CONTENT);
+        $this->clearResult($session);
+
+        if (\is_string($fileName) && \is_string($fileContent)) {
+            return $this->getFileResponse($fileName, $fileContent);
+        }
+
+        return $this->redirectToRoute(self::ROUTE_NAME);
+    }
+
+    #[Route(
+        path: '/',
         name: self::ROUTE_NAME,
         methods: [Request::METHOD_GET, Request::METHOD_POST],
     )]
-    public function __invoke(Request $request, MakeFontService $service): Response
+    public function index(Request $request, MakeFontService $service): Response
     {
         $result = null;
         $query = new MakeFontQuery();
@@ -41,15 +66,31 @@ class IndexController extends AbstractController
         if ($this->handleForm($request, $form)) {
             $locale = $request->getLocale();
             $result = $service->generate($query, $locale);
-            if ($result->isSuccess()) {
-                return $this->sendFile($result->fileName);
-            }
+            $this->saveResult($request->getSession(), $result);
         }
 
         return $this->render('index.html.twig', [
             'result' => $result,
             'form' => $form,
         ]);
+    }
+
+    private function clearResult(SessionInterface $session): void
+    {
+        $session->remove(self::KEY_FILE_NAME);
+        $session->remove(self::KEY_FILE_CONTENT);
+    }
+
+    private function getFileResponse(string $fileName, string $fileContent): Response
+    {
+        $disposition = HeaderUtils::makeDisposition(
+            HeaderUtils::DISPOSITION_ATTACHMENT,
+            \basename($fileName)
+        );
+        $response = new Response($fileContent);
+        $response->headers->set('Content-Disposition', $disposition);
+
+        return $response;
     }
 
     private function handleForm(Request $request, FormInterface $form): bool
@@ -59,9 +100,13 @@ class IndexController extends AbstractController
         return $form->isSubmitted() && $form->isValid();
     }
 
-    private function sendFile(string $fileName): BinaryFileResponse
+    private function saveResult(SessionInterface $session, MakeFontResult $result): void
     {
-        return $this->file($fileName)
-            ->deleteFileAfterSend();
+        if ($result->isSuccess()) {
+            $session->set(self::KEY_FILE_NAME, $result->fileName);
+            $session->set(self::KEY_FILE_CONTENT, \file_get_contents($result->fileName));
+        } else {
+            $this->clearResult($session);
+        }
     }
 }

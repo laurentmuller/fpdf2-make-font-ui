@@ -6,6 +6,7 @@ query:
     generate: Generate
     reset: Reset
     gitHub: GitHub
+    download: Download
 fields:
     fontFile: Font File
     afmFile: AFM File
@@ -25,6 +26,8 @@ theme:
     light: Light
 locale:
     title: Select Language
+result:
+    success: Creation results
 error:
     title: Error %s. %s
     description: An error occurred while processing your request.

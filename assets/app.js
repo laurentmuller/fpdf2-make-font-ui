@@ -4,7 +4,6 @@ import 'bootstrap';
 
 (() => {
     'use strict'
-
     const form = document.getElementById('data-form')
     const fontFile = document.getElementById('fontFile');
     const afmFile = document.getElementById('afmFile');
@@ -12,16 +11,18 @@ import 'bootstrap';
     const embed = document.getElementById('embed');
     const subset = document.getElementById('subset');
     const reset = document.getElementById('erase')
+    const download = document.getElementById('download');
     const afmLabel = afmFile.parentElement.querySelector('label');
 
     const resetElements = function () {
-        document.querySelectorAll('.alert, .invalid-feedback').forEach(element => {
-            element.remove()
+        document.querySelectorAll('.alert, .invalid-feedback, #download').forEach(element => {
+            element.remove();
         })
         document.querySelectorAll('.is-invalid').forEach(element => {
             element.classList.remove('is-invalid')
         })
         afmLabel.classList.remove('required');
+        reset.classList.add('me-auto');
     }
 
     form.addEventListener('submit', () => {
@@ -48,7 +49,7 @@ import 'bootstrap';
         localStorage.removeItem('make-font-encoding');
         localStorage.removeItem('make-font-embed');
         localStorage.removeItem('make-font-subset');
-        resetElements()
+        resetElements();
         form.reset();
         fontFile.focus();
     })
@@ -56,11 +57,14 @@ import 'bootstrap';
         localStorage.setItem('make-font-encoding', encoding.value);
     })
     embed.addEventListener('click', () => {
-        localStorage.setItem('make-font-embed', JSON.stringify(embed.checked))
+        localStorage.setItem('make-font-embed', JSON.stringify(embed.checked));
     })
     subset.addEventListener('click', () => {
-        localStorage.setItem('make-font-subset', JSON.stringify(subset.checked))
+        localStorage.setItem('make-font-subset', JSON.stringify(subset.checked));
     })
+    if (download) {
+        download.addEventListener('click', () => resetElements());
+    }
 
     document.querySelectorAll('.form-text.help-text').forEach(element => {
         const input = element.closest('div.mb-3').querySelector('input, select');
@@ -75,10 +79,10 @@ import 'bootstrap';
     }
     value = localStorage.getItem('make-font-embed')
     if (value) {
-        embed.checked = JSON.parse(value)
+        embed.checked = JSON.parse(value);
     }
     value = localStorage.getItem('make-font-subset')
     if (value) {
-        subset.checked = JSON.parse(value)
+        subset.checked = JSON.parse(value);
     }
 })()

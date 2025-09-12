@@ -45,4 +45,21 @@ class MakeFontResult
     {
         return !$this->exception instanceof MakeFontException && null !== $this->fileName;
     }
+
+    /**
+     * Split the content.
+     *
+     * @return string[]
+     */
+    public function splitContent(): array
+    {
+        if (null === $this->content || '' === $this->content) {
+            return [];
+        }
+
+        return \array_filter(
+            \explode('<br>', $this->content),
+            static fn (string $line): bool => '' !== \trim($line)
+        );
+    }
 }

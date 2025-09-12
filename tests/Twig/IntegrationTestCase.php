@@ -247,12 +247,11 @@ abstract class IntegrationTestCase extends TestCase
             throw new \InvalidArgumentException('Unable to evaluate the code.');
         }
 
-        /** @phpstan-ignore offsetAccess.notFound */
-        $uri = \stream_get_meta_data($stream)['uri'];
-        if (!\file_exists($uri)) {
+        $uri = \stream_get_meta_data($stream)['uri'] ?? '';
+        if (!\file_exists($uri) || '' === $uri) {
             throw new \InvalidArgumentException('Unable to open the file.');
         }
-        \register_shutdown_function(fn (): bool => \unlink($uri));
+        \register_shutdown_function(fn () => $this->unlink($uri));
         \fwrite($stream, \sprintf('<?php %s;', $code));
         $vars = (array) include $uri;
         \fclose($stream);
@@ -344,5 +343,12 @@ abstract class IntegrationTestCase extends TestCase
         }
 
         return $templates;
+    }
+
+    private function unlink(string $filename): void
+    {
+        if (\file_exists($filename)) {
+            \unlink($filename);
+        }
     }
 }

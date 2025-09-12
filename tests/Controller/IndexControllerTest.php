@@ -13,25 +13,39 @@ declare(strict_types=1);
 
 namespace App\Tests\Controller;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionFactory;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class IndexControllerTest extends WebTestCase
 {
-    public function testFontMakerException(): void
+    public function testDownloadWithContent(): void
     {
-        $values = [
-            'fontFile' => $this->createUploadedFile('otto_header.ttf'),
-            'afmFile' => null,
-            'encoding' => 'cp1252',
-            'embed' => false,
-            'subset' => false,
-        ];
-        $this->submitForm($values);
+        $client = static::createClient();
+        $session = $this->getSession($client);
+        $session->set('file_name', 'font.ttf');
+        $session->set('file_content', 'content');
+        $session->save();
+        $client->request(Request::METHOD_GET, '/download');
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertResponseIsSuccessful();
     }
 
-    public function testPostEmbed(): void
+    public function testDownloadWithoutContent(): void
+    {
+        $client = static::createClient();
+        $client->request(Request::METHOD_GET, '/download');
+        self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
+        self::assertResponseRedirects('/');
+    }
+
+    public function testIndexEmbed(): void
     {
         $values = [
             'fontFile' => $this->createUploadedFile('helvetica.ttf'),
@@ -43,7 +57,7 @@ class IndexControllerTest extends WebTestCase
         $this->submitForm($values);
     }
 
-    public function testPostPFB(): void
+    public function testIndexFontPFB(): void
     {
         $values = [
             'fontFile' => $this->createUploadedFile('FontType1.pfb'),
@@ -55,7 +69,7 @@ class IndexControllerTest extends WebTestCase
         $this->submitForm($values);
     }
 
-    public function testPostTTF(): void
+    public function testIndexFontTTF(): void
     {
         $values = [
             'fontFile' => $this->createUploadedFile('helvetica.ttf'),
@@ -67,14 +81,54 @@ class IndexControllerTest extends WebTestCase
         $this->submitForm($values);
     }
 
+    public function testIndexThrowException(): void
+    {
+        $values = [
+            'fontFile' => $this->createUploadedFile('otto_header.ttf'),
+            'afmFile' => null,
+            'encoding' => 'cp1252',
+            'embed' => false,
+            'subset' => false,
+        ];
+        $this->submitForm($values);
+    }
+
     private function createUploadedFile(string $name): UploadedFile
     {
         $directory = (string) \realpath(__DIR__ . '/../Fixtures/Fonts');
+        $path = Path::join($directory, $name);
 
         return new UploadedFile(
-            path: Path::join($directory, $name),
+            path: $path,
             originalName: $name
         );
+    }
+
+    private function getSession(KernelBrowser $client): SessionInterface
+    {
+        /** @phpstan-var SessionFactory $factory */
+        $factory = static::getContainer()->get('session.factory');
+        $session = $factory->createSession();
+        $cookieJar = $client->getCookieJar();
+
+        $cookie = $cookieJar->get('MOCKSESSID');
+        if ($cookie instanceof Cookie) {
+            $session->setId($cookie->getValue());
+            $session->start();
+
+            return $session;
+        }
+
+        $session->start();
+        $session->save();
+        $cookie = new Cookie(
+            name: $session->getName(),
+            value: $session->getId(),
+            domain: 'localhost',
+        );
+        $cookieJar->set($cookie);
+
+        return $session;
     }
 
     /**
@@ -83,7 +137,8 @@ class IndexControllerTest extends WebTestCase
     private function submitForm(array $values): void
     {
         $client = static::createClient();
-        $client->request('POST', '/');
+        $client->request(Request::METHOD_POST, '/');
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertResponseIsSuccessful();
         $client->submitForm('Generate', $values);
     }
