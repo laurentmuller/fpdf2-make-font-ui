@@ -1,6 +1,7 @@
 form:
+    actions: Actions
     required: Required value
-    source: Access source code on GitHub
+    source: Source code
 query:
     title: FPDF2 Make Font
     generate: Generate
@@ -20,12 +21,12 @@ helps:
     embed: Indicates whether the font should be embedded in the PDF document.
     subset: Indicates whether sub-setting characters should be used.
 theme:
-    title: Select Theme
+    title: Theme
     auto: System
     dark: Dark
     light: Light
 locale:
-    title: Select Language
+    title: Language
 result:
     success: Creation results
 error:

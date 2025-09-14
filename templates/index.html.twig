@@ -4,7 +4,6 @@
 {% set is_success = result and result.success %}
 {% block title %}{{ 'query.title'|trans }}{% endblock %}
 {% block body %}
-    {{ include('icons.html.twig') }}
     <div class="container">
         <div class="row my-3">
             <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
@@ -12,13 +11,7 @@
                     {{ form_start(form, {attr: {id: 'data-form', name: 'data-form'}}) }}
                     <div class="card-header d-flex flex-wrap">
                         <h1 class="card-title h5 my-2 me-auto">{{ block('title') }}</h1>
-                        <div class="d-flex align-items-center">
-                            {{ include('locale_switcher.html.twig') }}
-                            {{ include('theme_switcher.html.twig') }}
-                            <a href="https://github.com/laurentmuller/fpdf2-make-font-ui" target="_blank" class="btn btn-link text-body p-1" title="{{ 'form.source'|trans }}">
-                                <svg class="icon"><use href="#icon-github"></use></svg>
-                            </a>
-                        </div>
+                        {{ include('_menu.html.twig') }}
                     </div>
                     <div class="card-body">
                         {{ form_row(form.fontFile, {label_attr: {class: 'required'}}) }}
@@ -28,13 +21,13 @@
                         {{ form_row(form.subset) }}
                         {% if is_exception %}
                             <div class="alert alert-danger d-flex align-items-baseline" role="alert">
-                                <svg class="icon me-2"><use href="#icon-exclamation"></use></svg>
+                                <i class="fa-solid fa-circle-exclamation me-1"></i>
                                 <div>{{ result.message|raw }}</div>
                             </div>
                         {% elseif is_content %}
                             <div class="alert alert-success" role="alert">
-                                <a class="alert-link d-flex align-items-center" href="#details" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="details">
-                                    <svg class="icon me-2"><use href="#icon-info"></use></svg>{{ 'result.success'|trans }}
+                                <a class="alert-link d-flex align-items-center fw-normal drop-down-icon-right" href="#details" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="details">
+                                    <i class="fa-solid fa-circle-info me-1"></i>{{ 'result.success'|trans }}
                                 </a>
                                 <div id="details" class="collapse">
                                     <hr>
@@ -49,14 +42,14 @@
                     </div>
                     <div class="card-footer d-flex flex-wrap align-items-start gap-2">
                         <button type="submit" class="btn btn-form btn-primary">
-                            <svg class="icon me-2"><use href="#icon-generate"></use></svg>{{ 'query.generate'|trans -}}
+                            <i class="fa-solid fa-pen-to-square me-1"></i>{{ 'query.generate'|trans -}}
                         </button>
                         <button id="erase" name="erase" type="button" class="btn btn-form btn-secondary{% if not is_success %} me-auto{% endif %}">
-                            <svg class="icon me-2"><use href="#icon-reset"></use></svg>{{ 'query.reset'|trans -}}
+                            <i class="fa-solid fa-eraser me-1"></i>{{ 'query.reset'|trans -}}
                         </button>
                         {% if is_success %}
                             <a id="download" href="{{ path('download') }}" role="button" class="btn btn-form btn-success me-auto">
-                                <svg class="icon me-2"><use href="#icon-download"></use></svg>{{ 'query.download'|trans -}}
+                                <i class="fa-solid fa-download me-1"></i>{{ 'query.download'|trans -}}
                             </a>
                         {% endif %}
                         <span class="mt-0 form-text required">{{ 'form.required'|trans }}</span>

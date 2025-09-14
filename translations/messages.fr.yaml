@@ -1,6 +1,7 @@
 form:
+    actions: Actions
     required: Valeur requise
-    source: Accéder au code source sur GitHub
+    source: Code source
 query:
     title: Créateur de polices FPDF2
     generate: Générer
@@ -20,12 +21,12 @@ helps:
     embed: Indique si la police doit être intégrée dans le document PDF.
     subset: Indique si le sous-ensemble des caractères doit être utilisé.
 theme:
-    title: Sélectionner le thème
+    title: Thème
     auto: Système
     dark: Sombre
     light: Claire
 locale:
-    title: Sélectionner la langue
+    title: Langue
 result:
     success: Résultats de la création
 error:
