@@ -7,6 +7,7 @@ generate fonts.
 ## User interface
 
 ![User Interface](public/images/theme-light.png)
+![User Interface](public/images/theme-dark.png)
 
 ## Fields
 
