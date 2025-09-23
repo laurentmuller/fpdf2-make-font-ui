@@ -27,7 +27,9 @@
             element.classList.remove('checked');
         })
         const source = document.querySelector(`button[data-theme="${theme}"] .fa-check`);
-        source.classList.add('checked');
+        if (source) {
+            source.classList.add('checked');
+        }
     }
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {

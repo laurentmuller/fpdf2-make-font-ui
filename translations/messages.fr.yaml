@@ -31,6 +31,5 @@ result:
     success: Résultats de la création
 error:
     title: Erreur %s. %s
-    description: Une erreur s'est produite lors du traitement de votre demande.
-    link: Vérifiez l'URL ou retournez à la <a href="%s">page d'accueil</a>.
-    message: 'Message : %s'
+    description: Une erreur s'est produite lors du traitement de votre demande. Vérifiez l'URL ou retournez à la <a href="%s">page d'accueil</a>.
+    message: 'Message :'

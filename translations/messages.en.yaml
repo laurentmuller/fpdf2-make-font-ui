@@ -31,6 +31,5 @@ result:
     success: Creation results
 error:
     title: Error %s. %s
-    description: An error occurred while processing your request.
-    link: Verify the URL or return to the <a href="%s">home page</a>.
-    message: 'Message: %s'
+    description: An error occurred while processing your request. Verify the URL or return to the <a href="%s">home page</a>.
+    message: 'Message:'

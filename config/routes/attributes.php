@@ -14,16 +14,16 @@ declare(strict_types=1);
 use App\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
-return static function (RoutingConfigurator $routing): void {
-    $routing->import('../../src/Controller/', 'attribute');
-    $routing->import(Kernel::class, 'attribute');
+return static function (RoutingConfigurator $config): void {
+    $config->import('../../src/Controller/', 'attribute');
+    $config->import(Kernel::class, 'attribute');
 
-    if ('dev' === $routing->env()) {
-        $routing->import('@FrameworkBundle/Resources/config/routing/errors.xml')
+    if ('dev' === $config->env()) {
+        $config->import('@FrameworkBundle/Resources/config/routing/errors.php')
             ->prefix('/_error');
-        $routing->import('@WebProfilerBundle/Resources/config/routing/wdt.xml')
+        $config->import('@WebProfilerBundle/Resources/config/routing/wdt.php')
             ->prefix('/_wdt');
-        $routing->import('@WebProfilerBundle/Resources/config/routing/profiler.xml')
+        $config->import('@WebProfilerBundle/Resources/config/routing/profiler.php')
             ->prefix('/_profiler');
     }
 };
