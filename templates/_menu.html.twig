@@ -1,9 +1,13 @@
 {% macro header(icon, title) %}
     <li>
         <h6 class="dropdown-header">
-            <i class="{{ icon }} me-2"></i>{{ title|trans|upper }}
+            <i class="fa-solid fa-{{ icon }} me-2"></i>{{ title|trans|upper }}
         </h6>
     </li>
+{% endmacro %}
+
+{% macro divider() %}
+    <li><hr class="dropdown-divider"></li>
 {% endmacro %}
 
 {% macro locale_entry(locale) %}
@@ -13,7 +17,7 @@
     {% set checked = app.request.locale == locale ? ' checked' : '' %}
     <li>
         <a class="dropdown-item d-flex align-items-center" href="{{ href }}" aria-pressed="false">
-            <img class="icon me-2" alt="{{ text }}" src="{{ src }}">
+            <img class="locale-icon me-2" alt="{{ text }}" src="{{ src }}">
             <span>{{ text }}</span>
             <i class="fa-solid fa-check ms-auto{{ checked }}"></i>
         </a>
@@ -24,7 +28,7 @@
     {% set text = ('theme.' ~ theme)|trans %}
     <li>
         <button type="button" class="dropdown-item d-flex align-items-center" data-theme="{{ theme }}" aria-pressed="false">
-            <i class="{{ icon }} theme-icon me-2"></i>
+            <i class="theme-icon fa-solid fa-{{ icon }} me-2"></i>
             <span>{{ text }}</span>
             <i class="fa-solid fa-check ms-auto"></i>
         </button>
@@ -36,15 +40,15 @@
         <i class="fa-solid fa-bars"></i>
     </button>
     <ul class="dropdown-menu dropdown-menu-end">
-        {{ _self.header('fa-solid fa-language', 'locale.title') }}
+        {{ _self.header('language', 'locale.title') }}
         {{ _self.locale_entry('en') }}
         {{ _self.locale_entry('fr') }}
-        <li><hr class="dropdown-divider"></li>
-        {{ _self.header('fa-solid fa-fill', 'theme.title') }}
-        {{ _self.theme_entry('light', 'fa-regular fa-sun') }}
-        {{ _self.theme_entry('dark', 'fa-regular fa-moon') }}
-        {{ _self.theme_entry('auto', 'fa-solid fa-circle-half-stroke') }}
-        <li><hr class="dropdown-divider"></li>
+        {{ _self.divider() }}
+        {{ _self.header('palette', 'theme.title') }}
+        {{ _self.theme_entry('light', 'sun') }}
+        {{ _self.theme_entry('dark', 'moon') }}
+        {{ _self.theme_entry('auto', 'circle-half-stroke') }}
+        {{ _self.divider() }}
         <li>
             <a href="https://github.com/laurentmuller/fpdf2-make-font-ui" target="_blank" class="dropdown-item">
                 <i class="fa-brands fa-github me-2"></i>{{ 'form.source'|trans }}

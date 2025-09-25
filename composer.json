@@ -128,6 +128,7 @@
         "app-stan": "vendor-bin/phpstan/vendor/bin/phpstan analyse --configuration phpstan.neon --memory-limit 2G",
         "app-test": "vendor/bin/phpunit",
         "app-markdown": "markdownlint-cli2",
+        "app-asset-outdated": "@php bin/console importmap:outdated",
         "app-asset-update": "@php bin/console importmap:update",
         "app-asset-compile-debug": "@php bin/console asset-map:compile",
         "app-asset-compile-prod": "@php bin/console asset-map:compile --no-debug",
