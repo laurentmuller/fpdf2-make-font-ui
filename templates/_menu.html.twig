@@ -17,7 +17,7 @@
     {% set checked = app.request.locale == locale ? ' checked' : '' %}
     <li>
         <a class="dropdown-item d-flex align-items-center" href="{{ href }}" aria-pressed="false">
-            <img class="locale-icon me-2" alt="{{ text }}" src="{{ src }}">
+            <img class="locale-icon ms-4 me-2" alt="{{ text }}" src="{{ src }}">
             <span>{{ text }}</span>
             <i class="fa-solid fa-check ms-auto{{ checked }}"></i>
         </a>
@@ -28,7 +28,7 @@
     {% set text = ('theme.' ~ theme)|trans %}
     <li>
         <button type="button" class="dropdown-item d-flex align-items-center" data-theme="{{ theme }}" aria-pressed="false">
-            <i class="theme-icon fa-solid fa-{{ icon }} me-2"></i>
+            <i class="theme-icon fa-solid fa-{{ icon }} ms-4 me-2"></i>
             <span>{{ text }}</span>
             <i class="fa-solid fa-check ms-auto"></i>
         </button>

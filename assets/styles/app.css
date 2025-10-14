@@ -6,13 +6,6 @@
     cursor: default;
 }
 
-img.locale {
-    position: relative;
-    display: inline-block;
-    width: 1.3333rem;
-    line-height: 1rem;
-}
-
 html[data-bs-theme=dark] .btn.btn-dark {
     border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
 }
