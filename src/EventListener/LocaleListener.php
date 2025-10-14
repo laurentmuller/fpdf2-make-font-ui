@@ -27,6 +27,7 @@ readonly class LocaleListener
         $request = $event->getRequest();
         $locale = $request->cookies->getString(LocaleController::LOCALE_KEY, Translator::DEFAULT_LOCALE);
         if (Translator::isAllowedLocale($locale)) {
+            $request->setDefaultLocale($locale);
             $request->setLocale($locale);
         }
     }

@@ -50,9 +50,5 @@ class LocaleControllerTest extends WebTestCase
         $cookies = $client->getRequest()->cookies;
         $locale = $cookies->getString('_locale');
         self::assertSame($expected, $locale);
-
-        $client->getRequest()->cookies;
-        $locale = $cookies->getString('_locale');
-        self::assertSame($expected, $locale);
     }
 }
