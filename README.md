@@ -92,7 +92,7 @@ have access to the source code on GitHub.
 [![PHP-CS-Fixer](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php-cs-fixer.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php-cs-fixer.yaml)
 [![PHPStan](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_stan.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_stan.yaml)
 [![PHPUnit](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml)
-[![Psalm](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/pslam.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/pslam.yaml)
+[![Psalm](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/psalm.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/psalm.yaml)
 [![Rector](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/rector.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/rector.yaml)
 [![Lint](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/lint.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/lint.yaml)
 [![StyleCI](https://github.styleci.io/repos/969444909/shield?branch=master)](https://github.styleci.io/repos/969444909?branch=master)

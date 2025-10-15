@@ -14,16 +14,56 @@ declare(strict_types=1);
 namespace App\Tests\Model;
 
 use App\Model\MakeFontResult;
+use fpdf\Log;
+use fpdf\LogLevel;
 use fpdf\MakeFontException;
 use PHPUnit\Framework\TestCase;
 
 class MakeFontResultTest extends TestCase
 {
-    public function testSplitContent(): void
+    public function testIsLogs(): void
     {
-        $expected = ['Line1', 'Line2'];
-        $actual = new MakeFontResult(content: \implode('<br>', $expected));
-        self::assertSame($expected, $actual->splitContent());
+        $result = new MakeFontResult();
+        $actual = $result->isLogs();
+        self::assertFalse($actual);
+
+        $logs = [
+            new Log('Info', LogLevel::INFO),
+            new Log('Warning', LogLevel::WARNING),
+        ];
+        $result = new MakeFontResult(logs: $logs);
+        $actual = $result->isLogs();
+        self::assertTrue($actual);
+    }
+
+    public function testMaxLevelDefault(): void
+    {
+        $result = new MakeFontResult();
+        $actual = $result->getMaxLevel();
+        self::assertSame(LogLevel::INFO, $actual);
+    }
+
+    public function testMaxLevelError(): void
+    {
+        $logs = [
+            new Log('Info', LogLevel::INFO),
+            new Log('Warning', LogLevel::WARNING),
+            new Log('Error', LogLevel::ERROR),
+        ];
+        $result = new MakeFontResult(logs: $logs);
+        $actual = $result->getMaxLevel();
+        self::assertSame(LogLevel::ERROR, $actual);
+    }
+
+    public function testMaxLevelWarning(): void
+    {
+        $logs = [
+            new Log('Info', LogLevel::INFO),
+            new Log('Warning', LogLevel::WARNING),
+        ];
+        $result = new MakeFontResult(logs: $logs);
+        $actual = $result->getMaxLevel();
+        self::assertSame(LogLevel::WARNING, $actual);
     }
 
     public function testWithException(): void
@@ -38,10 +78,9 @@ class MakeFontResultTest extends TestCase
     {
         $actual = new MakeFontResult();
         self::assertNull($actual->fileName);
-        self::assertNull($actual->content);
+        self::assertEmpty($actual->logs);
         self::assertNull($actual->exception);
         self::assertNull($actual->getMessage());
         self::assertFalse($actual->isSuccess());
-        self::assertSame([], $actual->splitContent());
     }
 }

@@ -16,12 +16,14 @@ namespace App\Service;
 use App\Model\MakeFontQuery;
 use App\Model\MakeFontResult;
 use fpdf\FontMaker;
+use fpdf\Log;
 use fpdf\MakeFontException;
 use fpdf\Translator;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Service to parse a font query and generate a font result.
@@ -30,15 +32,16 @@ readonly class MakeFontService
 {
     public function __construct(
         private Filesystem $filesystem,
-        private FontMaker $fontMaker
+        private FontMaker $fontMaker,
+        private TranslatorInterface $translator,
     ) {
     }
 
     public function generate(MakeFontQuery $query, string $locale = Translator::DEFAULT_LOCALE): MakeFontResult
     {
-        $content = null;
         $exception = null;
         $zipFile = null;
+        $logs = [];
 
         $fontFile = $this->getFontFile($query);
         $afmFile = $this->getAfmFile($query);
@@ -56,22 +59,19 @@ readonly class MakeFontService
         try {
             \chdir($targetPath);
             $this->updateLocale($locale);
-            $content = $this->makeFont($fontFile->getBasename(), $query->encoding, $query->embed, $query->subset);
+            $logs = $this->makeFont($fontFile->getBasename(), $query->encoding, $query->embed, $query->subset);
 
             $zipFile = $jsonFile;
             if ($this->filesystem->exists($compressedFile)) {
                 $zipFile = $this->join($targetPath, $baseName, 'zip');
                 $this->createZipFile($zipFile, $jsonFile, $compressedFile);
+                $logs[] = $this->getLogZip($zipFile);
             }
         } catch (MakeFontException $e) {
             $exception = $e;
         }
 
-        return new MakeFontResult(
-            $zipFile,
-            $content,
-            $exception,
-        );
+        return new MakeFontResult($zipFile, $logs, $exception);
     }
 
     private function createZipFile(string $zipFile, string $jsonFile, string $compressedFile): void
@@ -101,6 +101,14 @@ readonly class MakeFontService
         return $query->fontFile;
     }
 
+    private function getLogZip(string $zipFile): Log
+    {
+        $name = \basename($zipFile);
+        $message = $this->translator->trans('result.zip', ['%name%' => $name]);
+
+        return new Log($message);
+    }
+
     private function getTargetPath(): string
     {
         return Path::join(\sys_get_temp_dir(), \uniqid('font_'));
@@ -111,16 +119,14 @@ readonly class MakeFontService
         return Path::join($targetPath, $baseName . $extension);
     }
 
-    private function makeFont(string $fontFile, string $encoding, bool $embed, bool $subset): string
+    /**
+     * @return Log[]
+     */
+    private function makeFont(string $fontFile, string $encoding, bool $embed, bool $subset): array
     {
-        try {
-            \ob_start();
-            $this->fontMaker->makeFont($fontFile, $encoding, $embed, $subset);
+        $this->fontMaker->makeFont($fontFile, $encoding, $embed, $subset);
 
-            return (string) \ob_get_contents();
-        } finally {
-            \ob_end_clean();
-        }
+        return $this->fontMaker->getLogs();
     }
 
     /**

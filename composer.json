@@ -105,6 +105,20 @@
         "symfony/polyfill-intl-grapheme": "*",
         "symfony/polyfill-intl-normalizer": "*"
     },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "forward-command": true,
+            "target-directory": "vendor-bin"
+        },
+        "symfony": {
+            "allow-contrib": false,
+            "require": "7.3.*"
+        }
+    },
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
@@ -142,19 +156,5 @@
             "@app-markdown",
             "@app-test"
         ]
-    },
-    "conflict": {
-        "symfony/symfony": "*"
-    },
-    "extra": {
-        "bamarni-bin": {
-            "bin-links": false,
-            "forward-command": true,
-            "target-directory": "vendor-bin"
-        },
-        "symfony": {
-            "allow-contrib": false,
-            "require": "7.3.*"
-        }
     }
 }

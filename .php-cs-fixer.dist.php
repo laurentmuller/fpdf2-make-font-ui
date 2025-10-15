@@ -62,12 +62,14 @@ $rules = [
 ];
 
 $finder = Finder::create()
-    ->in(__DIR__ . '/config')
-    ->in(__DIR__ . '/src')
-    ->in(__DIR__ . '/tests')
-    ->notPath('sources')
-    ->notPath('targets')
-    ->append([
+    ->in([
+        __DIR__ . '/config',
+        __DIR__ . '/src',
+        __DIR__ . '/tests',
+    ])->notPath([
+        'sources',
+        'targets',
+    ])->append([
         __FILE__,
         __DIR__ . '/rector.php',
         __DIR__ . '/public/index.php',

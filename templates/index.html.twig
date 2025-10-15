@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
-{% set is_exception = result and result.exception %}
-{% set is_content = result and result.content %}
+{# macros #}
+{% macro output_level(level, message) -%}
+<div class="d-flex align-items-baseline">
+    {%- if level == enum('fpdf\\LogLevel').ERROR -%}
+        <i class="fa-solid fa-circle-exclamation text-danger me-2"></i>
+    {%- elseif level == enum('fpdf\\LogLevel').WARNING > 0 -%}
+        <i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>
+    {%- else -%}
+        <i class="fa-solid fa-circle-check text-info me-2"></i>
+    {%- endif -%}
+    {{ message }}
+</div>
+{%- endmacro %}
+{# parameters #}
 {% set is_success = result and result.success %}
 {% block title %}{{ 'query.title'|trans }}{% endblock %}
 {% block body %}
@@ -16,21 +28,28 @@
             {{ form_row(form.encoding) }}
             {{ form_row(form.embed) }}
             {{ form_row(form.subset) }}
-            {% if is_exception %}
-                <div class="alert alert-danger d-flex align-items-baseline" role="alert">
-                    <i class="fa-solid fa-circle-exclamation me-1"></i>
-                    <div>{{ result.message|raw }}</div>
-                </div>
-            {% elseif is_content %}
-                <div class="alert alert-success" role="alert">
+            {% if result and result.exception %}
+                <div class="alert alert-light" role="alert">
                     <a class="alert-link d-flex align-items-center fw-normal drop-down-icon-right" href="#details" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="details">
-                        <i class="fa-solid fa-circle-info me-1"></i>{{ 'result.success'|trans }}
+                        {{- _self.output_level(enum('fpdf\\LogLevel').ERROR, 'result.error'|trans) -}}
                     </a>
                     <div id="details" class="collapse">
                         <hr>
-                        <ul class="mb-0">
-                            {% for line in result.splitContent %}
-                                <li>{{ line|e }}</li>
+                        <ul class="list-unstyled ms-3 mb-0">
+                            <li>{{- _self.output_level(enum('fpdf\\LogLevel').ERROR, result.message|raw) -}}</li>
+                        </ul>
+                    </div>
+                </div>
+            {% elseif result and result.isLogs %}
+                <div class="alert alert-light" role="alert">
+                    <a class="alert-link d-flex align-items-center fw-normal drop-down-icon-right" href="#details" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="details">
+                        {{- _self.output_level(enum('fpdf\\LogLevel').INFO, 'result.success'|trans) -}}
+                    </a>
+                    <div id="details" class="collapse">
+                        <hr>
+                        <ul class="list-unstyled ms-3 mb-0">
+                            {% for log in result.logs %}
+                                <li>{{ _self.output_level(log.level, log.message) }}</li>
                             {% endfor %}
                         </ul>
                     </div>

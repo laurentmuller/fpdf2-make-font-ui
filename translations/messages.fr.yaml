@@ -28,7 +28,9 @@ theme:
 locale:
     title: Langue
 result:
-    success: Résultats de la création
+    success: Le fichier a été généré avec succès et peut être téléchargé.
+    error: Une erreur s'est produite lors du traitement de votre demande !
+    zip: 'Fichier de téléchargement généré : %name%.'
 error:
     title: Erreur %s. %s
     description: Une erreur s'est produite lors du traitement de votre demande. Vérifiez l'URL ou retournez à la <a href="%s">page d'accueil</a>.
