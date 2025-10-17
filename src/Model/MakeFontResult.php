@@ -32,6 +32,16 @@ readonly class MakeFontResult
     }
 
     /**
+     * Create an instance with the given exception.
+     *
+     * @param MakeFontException $exception the exception
+     */
+    public static function errorInstance(MakeFontException $exception): self
+    {
+        return new self(exception: $exception);
+    }
+
+    /**
      * Gets the log level that have the maximum value.
      */
     public function getMaxLevel(): LogLevel
@@ -54,6 +64,14 @@ readonly class MakeFontResult
     }
 
     /**
+     * Gets the base name of this file or an empty string if none.
+     */
+    public function getName(): string
+    {
+        return \basename($this->fileName ?? '');
+    }
+
+    /**
      * @phpstan-assert-if-true non-empty-array<Log> $this->logs
      */
     public function isLogs(): bool
@@ -68,5 +86,16 @@ readonly class MakeFontResult
     public function isSuccess(): bool
     {
         return !$this->exception instanceof MakeFontException && null !== $this->fileName;
+    }
+
+    /**
+     * Create an instance with the given file name and log entries.
+     *
+     * @param string $fileName the generated file (.json or .zip)
+     * @param Log[]  $logs     the log entries
+     */
+    public static function successInstance(string $fileName, array $logs): self
+    {
+        return new self(fileName: $fileName, logs: $logs);
     }
 }

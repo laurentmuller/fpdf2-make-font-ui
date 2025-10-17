@@ -21,9 +21,19 @@ use PHPUnit\Framework\TestCase;
 
 class MakeFontResultTest extends TestCase
 {
+    public function testErrorInstance(): void
+    {
+        $exception = new MakeFontException('fake');
+        $actual = MakeFontResult::errorInstance($exception);
+        self::assertFalse($actual->isSuccess());
+        self::assertFalse($actual->isLogs());
+        self::assertSame('fake', $actual->getMessage());
+        self::assertNull($actual->fileName);
+    }
+
     public function testIsLogs(): void
     {
-        $result = new MakeFontResult();
+        $result = MakeFontResult::successInstance('fake.json', []);
         $actual = $result->isLogs();
         self::assertFalse($actual);
 
@@ -31,14 +41,14 @@ class MakeFontResultTest extends TestCase
             new Log('Info', LogLevel::INFO),
             new Log('Warning', LogLevel::WARNING),
         ];
-        $result = new MakeFontResult(logs: $logs);
+        $result = MakeFontResult::successInstance('fake.json', $logs);
         $actual = $result->isLogs();
         self::assertTrue($actual);
     }
 
     public function testMaxLevelDefault(): void
     {
-        $result = new MakeFontResult();
+        $result = MakeFontResult::successInstance('fake.json', []);
         $actual = $result->getMaxLevel();
         self::assertSame(LogLevel::INFO, $actual);
     }
@@ -50,7 +60,7 @@ class MakeFontResultTest extends TestCase
             new Log('Warning', LogLevel::WARNING),
             new Log('Error', LogLevel::ERROR),
         ];
-        $result = new MakeFontResult(logs: $logs);
+        $result = MakeFontResult::successInstance('fake.json', $logs);
         $actual = $result->getMaxLevel();
         self::assertSame(LogLevel::ERROR, $actual);
     }
@@ -61,17 +71,36 @@ class MakeFontResultTest extends TestCase
             new Log('Info', LogLevel::INFO),
             new Log('Warning', LogLevel::WARNING),
         ];
-        $result = new MakeFontResult(logs: $logs);
+        $result = MakeFontResult::successInstance('fake.json', $logs);
         $actual = $result->getMaxLevel();
         self::assertSame(LogLevel::WARNING, $actual);
     }
 
-    public function testWithException(): void
+    public function testName(): void
     {
         $exception = new MakeFontException('fake');
-        $actual = new MakeFontResult(exception: $exception);
-        self::assertFalse($actual->isSuccess());
-        self::assertSame('fake', $actual->getMessage());
+        $result = MakeFontResult::errorInstance($exception);
+        $actual = $result->getName();
+        self::assertSame('', $actual);
+
+        $fileName = 'fake.json';
+        $result = MakeFontResult::successInstance($fileName, []);
+        $actual = $result->getName();
+        self::assertSame($fileName, $actual);
+    }
+
+    public function testSuccessInstance(): void
+    {
+        $fileName = 'fake.json';
+        $logs = [
+            new Log('Info', LogLevel::INFO),
+            new Log('Warning', LogLevel::WARNING),
+        ];
+        $actual = MakeFontResult::successInstance($fileName, $logs);
+        self::assertTrue($actual->isSuccess());
+        self::assertSame($fileName, $actual->fileName);
+        self::assertSame($logs, $actual->logs);
+        self::assertNull($actual->exception);
     }
 
     public function testWithNullValues(): void

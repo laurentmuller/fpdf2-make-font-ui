@@ -85,16 +85,16 @@
         },
         {
             "name": "laurentmuller/fpdf2-make-font",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laurentmuller/fpdf2-make-font.git",
-                "reference": "4358642b2143d4279ef899e2e005a9654a32b3d6"
+                "reference": "0004e6567c71f888f267b814ef82bc803d271d7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/4358642b2143d4279ef899e2e005a9654a32b3d6",
-                "reference": "4358642b2143d4279ef899e2e005a9654a32b3d6",
+                "url": "https://api.github.com/repos/laurentmuller/fpdf2-make-font/zipball/0004e6567c71f888f267b814ef82bc803d271d7c",
+                "reference": "0004e6567c71f888f267b814ef82bc803d271d7c",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "issues": "https://github.com/laurentmuller/fpdf2-make-font/issues",
                 "source": "https://github.com/laurentmuller/fpdf2-make-font"
             },
-            "time": "2025-10-15T09:32:23+00:00"
+            "time": "2025-10-17T06:35:22+00:00"
         },
         {
             "name": "psr/cache",

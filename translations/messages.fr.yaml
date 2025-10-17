@@ -28,7 +28,7 @@ theme:
 locale:
     title: Langue
 result:
-    success: Le fichier a été généré avec succès et peut être téléchargé.
+    success: Le fichier "%name%" a été généré avec succès et peut être téléchargé.
     error: Une erreur s'est produite lors du traitement de votre demande !
     zip: 'Fichier de téléchargement généré : %name%.'
 error:

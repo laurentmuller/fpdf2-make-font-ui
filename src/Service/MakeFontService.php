@@ -39,10 +39,6 @@ readonly class MakeFontService
 
     public function generate(MakeFontQuery $query, string $locale = Translator::DEFAULT_LOCALE): MakeFontResult
     {
-        $exception = null;
-        $zipFile = null;
-        $logs = [];
-
         $fontFile = $this->getFontFile($query);
         $afmFile = $this->getAfmFile($query);
 
@@ -60,18 +56,18 @@ readonly class MakeFontService
             \chdir($targetPath);
             $this->updateLocale($locale);
             $logs = $this->makeFont($fontFile->getBasename(), $query->encoding, $query->embed, $query->subset);
-
-            $zipFile = $jsonFile;
-            if ($this->filesystem->exists($compressedFile)) {
-                $zipFile = $this->join($targetPath, $baseName, 'zip');
-                $this->createZipFile($zipFile, $jsonFile, $compressedFile);
-                $logs[] = $this->getLogZip($zipFile);
+            if (!$this->filesystem->exists($compressedFile)) {
+                return MakeFontResult::successInstance($jsonFile, $logs);
             }
-        } catch (MakeFontException $e) {
-            $exception = $e;
-        }
 
-        return new MakeFontResult($zipFile, $logs, $exception);
+            $zipFile = $this->join($targetPath, $baseName, 'zip');
+            $this->createZipFile($zipFile, $jsonFile, $compressedFile);
+            $logs[] = $this->getLogZip($zipFile);
+
+            return MakeFontResult::successInstance($zipFile, $logs);
+        } catch (MakeFontException $e) {
+            return MakeFontResult::errorInstance($e);
+        }
     }
 
     private function createZipFile(string $zipFile, string $jsonFile, string $compressedFile): void

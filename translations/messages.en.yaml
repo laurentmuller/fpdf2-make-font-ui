@@ -28,9 +28,9 @@ theme:
 locale:
     title: Language
 result:
-    success: The file has been successfully generated and can be downloaded.
+    success: The file "%name%" has been successfully generated and can be downloaded.
     error: An error occurred while processing your request !
-    zip: 'Download File generated: %name%.'
+    zip: 'Download file generated: %name%.'
 error:
     title: Error %s. %s
     description: An error occurred while processing your request. Verify the URL or return to the <a href="%s">home page</a>.
