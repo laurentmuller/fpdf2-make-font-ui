@@ -3,15 +3,15 @@
 {% block body %}
     <div class="card rounded-0 border-danger">
         <div class="card-header rounded-0 d-flex flex-wrap text-bg-danger">
-            <h1 class="card-title h5 my-2 me-auto">{{ block('title') }}</h1>
+            <h1 class="card-title h5 my-2"><i class="fa-solid fa-circle-exclamation"></i>{{- block('title') }}</h1>
         </div>
         <div class="card-body">
             <p>{{ 'error.description'|trans|format(path('index'))|raw }}</p>
             {% if exception is defined %}
                 <hr>
-                <div class="row">
-                    <div class="col-md-auto">{{ 'error.message'|trans }}</div>
-                    <div class="col">{{ exception.message }}</div>
+                <div class="d-flex align-items-baseline gap-2">
+                    <div class="text-nowrap">{{ 'error.message'|trans }}</div>
+                    <div>{{ exception.message|raw }}</div>
                 </div>
             {% endif %}
         </div>

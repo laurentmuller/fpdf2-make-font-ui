@@ -18,27 +18,10 @@ use PHPUnit\Framework\TestCase;
 
 class NonceServiceTest extends TestCase
 {
-    private NonceService $service;
-
-    #[\Override]
-    protected function setUp(): void
-    {
-        $this->service = new NonceService();
-    }
-
-    public function testCspNonce(): void
-    {
-        $nonce = $this->service->getNonce();
-        $cspNonce = $this->service->getCspNonce();
-        self::assertStringStartsWith("'nonce-", $cspNonce);
-        self::assertStringEndsWith("'", $cspNonce);
-        self::assertStringContainsString($nonce, $cspNonce);
-        self::assertSame("'nonce-" . $nonce . "'", $cspNonce);
-    }
-
     public function testLength(): void
     {
-        $nonce = $this->service->getNonce();
-        self::assertSame(32, \strlen($nonce));
+        $service = new NonceService();
+        $cspNonce = $service->getCspNonce();
+        self::assertSame(32, \strlen($cspNonce));
     }
 }

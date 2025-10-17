@@ -25,19 +25,8 @@ class NonceService
      */
     private ?string $nonce = null;
 
-    /**
-     * Gets the CSP nonce.
-     */
-    public function getCspNonce(): string
-    {
-        return \sprintf("'nonce-%s'", $this->getNonce());
-    }
-
-    /**
-     * Generates a random nonce.
-     */
     #[AsTwigFunction(name: 'csp_nonce')]
-    public function getNonce(): string
+    public function getCspNonce(): string
     {
         return $this->nonce ??= \bin2hex(\openssl_random_pseudo_bytes(16));
     }
