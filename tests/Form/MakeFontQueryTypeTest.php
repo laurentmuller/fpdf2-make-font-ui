@@ -18,7 +18,7 @@ use App\Model\MakeFontQuery;
 use fpdf\FontMaker;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class MakeFontQueryTypeTest extends TypeTestCase
+final class MakeFontQueryTypeTest extends TypeTestCase
 {
     public function testCustomFormView(): void
     {

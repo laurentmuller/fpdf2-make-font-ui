@@ -23,11 +23,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionFactory;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class IndexControllerTest extends WebTestCase
+final class IndexControllerTest extends WebTestCase
 {
     public function testDownloadWithContent(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
         $session = $this->getSession($client);
         $session->set('file_name', 'font.ttf');
         $session->set('file_content', 'content');
@@ -39,7 +39,7 @@ class IndexControllerTest extends WebTestCase
 
     public function testDownloadWithoutContent(): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
         $client->request(Request::METHOD_GET, '/download');
         self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
         self::assertResponseRedirects('/');
@@ -107,7 +107,7 @@ class IndexControllerTest extends WebTestCase
     private function getSession(KernelBrowser $client): SessionInterface
     {
         /** @phpstan-var SessionFactory $factory */
-        $factory = static::getContainer()->get('session.factory');
+        $factory = self::getContainer()->get('session.factory');
         $session = $factory->createSession();
         $cookieJar = $client->getCookieJar();
 
@@ -136,7 +136,7 @@ class IndexControllerTest extends WebTestCase
      */
     private function submitForm(array $values): void
     {
-        $client = static::createClient();
+        $client = self::createClient();
         $client->request(Request::METHOD_POST, '/');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertResponseIsSuccessful();

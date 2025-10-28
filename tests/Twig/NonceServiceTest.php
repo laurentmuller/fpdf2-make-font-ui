@@ -17,7 +17,7 @@ use App\Service\NonceService;
 use Twig\Extension\AttributeExtension;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
 
-class NonceServiceTest extends IntegrationTestCase implements RuntimeLoaderInterface
+final class NonceServiceTest extends IntegrationTestCase implements RuntimeLoaderInterface
 {
     private NonceService $service;
 

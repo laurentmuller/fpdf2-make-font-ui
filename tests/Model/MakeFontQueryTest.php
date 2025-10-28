@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 
-class MakeFontQueryTest extends TestCase
+final class MakeFontQueryTest extends TestCase
 {
     /**
      * @throws Exception

@@ -19,7 +19,7 @@ use fpdf\LogLevel;
 use fpdf\MakeFontException;
 use PHPUnit\Framework\TestCase;
 
-class MakeFontResultTest extends TestCase
+final class MakeFontResultTest extends TestCase
 {
     public function testErrorInstance(): void
     {
