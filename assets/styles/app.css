@@ -45,6 +45,7 @@ a {
     margin-left: auto;
     margin-right: 8px;
     content: '\f104';
+    align-self: baseline;
     transition: transform 0.15s ease-in-out;
 }
 

@@ -73,17 +73,16 @@ have access to the source code on GitHub.
 ## Versions
 
 [![Application](https://img.shields.io/badge/Application-1.0.0-blue)](https://github.com/laurentmuller/calculation)
-[![Symfony](https://img.shields.io/badge/Symfony-7.3.0-informational?logo=symfony)](https://symfony.com)
+[![Symfony](https://img.shields.io/badge/Symfony-7.3.6-informational?logo=symfony)](https://symfony.com)
 [![PHP](https://img.shields.io/badge/PHP-8.2.28-informational?logo=php)](https://www.php.net)
 [![Apache](https://img.shields.io/badge/Apache-2.4.51-informational?logo=apache)](https://httpd.apache.org)
-[![PhpStorm](https://img.shields.io/badge/PhpStorm-2025.1-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
+[![PhpStorm](https://img.shields.io/badge/PhpStorm-2025.2-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
 
 ## Code Quality
 
 [![SymfonyInsight](https://insight.symfony.com/projects/cf786842-6061-4d9d-921c-e0e3a22cf2bd/mini.svg)](https://insight.symfony.com/projects/cf786842-6061-4d9d-921c-e0e3a22cf2bd)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ab264caadf99477c8a7ac132346d99dd)](https://app.codacy.com/gh/laurentmuller/fpdf2-make-font-ui/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![PHP-Stan](https://img.shields.io/badge/PHPStan-Level%2010-brightgreen.svg?style=flat&logo=php)](https://phpstan.org/blog/find-bugs-in-your-code-without-writing-tests)
-[![Psalm](https://img.shields.io/badge/Psalm-Level%201-brightgreen.svg?style=flat)](https://psalm.dev/docs/running_psalm/installation/)
 [![CodeFactor](https://www.codefactor.io/repository/github/laurentmuller/fpdf2-make-font-ui/badge)](https://www.codefactor.io/repository/github/laurentmuller/fpdf2-make-font-ui)
 [![Codecov](https://codecov.io/gh/laurentmuller/fpdf2-make-font-ui/graph/badge.svg?token=3SCSEL8UEM)](https://codecov.io/gh/laurentmuller/fpdf2-make-font-ui)
 
@@ -92,7 +91,6 @@ have access to the source code on GitHub.
 [![PHP-CS-Fixer](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php-cs-fixer.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php-cs-fixer.yaml)
 [![PHPStan](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_stan.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_stan.yaml)
 [![PHPUnit](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml)
-[![Psalm](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/psalm.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/psalm.yaml)
 [![Rector](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/rector.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/rector.yaml)
 [![Lint](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/lint.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/lint.yaml)
 [![StyleCI](https://github.styleci.io/repos/969444909/shield?branch=master)](https://github.styleci.io/repos/969444909?branch=master)

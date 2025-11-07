@@ -18,7 +18,6 @@ use App\Model\MakeFontQuery;
 use App\Model\MakeFontResult;
 use App\Service\MakeFontService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,8 +61,9 @@ class IndexController extends AbstractController
     {
         $result = null;
         $query = new MakeFontQuery();
-        $form = $this->createForm(MakeFontQueryType::class, $query);
-        if ($this->handleForm($request, $form)) {
+        $form = $this->createForm(MakeFontQueryType::class, $query)
+            ->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             $locale = $request->getLocale();
             $result = $service->generate($query, $locale);
             $this->saveResult($request->getSession(), $result);
@@ -91,13 +91,6 @@ class IndexController extends AbstractController
         $response->headers->set('Content-Disposition', $disposition);
 
         return $response;
-    }
-
-    private function handleForm(Request $request, FormInterface $form): bool
-    {
-        $form->handleRequest($request);
-
-        return $form->isSubmitted() && $form->isValid();
     }
 
     private function saveResult(SessionInterface $session, MakeFontResult $result): void

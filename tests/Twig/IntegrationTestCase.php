@@ -9,6 +9,15 @@
  * @author bibi.nu <bibi@bibi.nu>
  */
 
+/*
+ * This file is part of the Calculation package.
+ *
+ * (c) bibi.nu <bibi@bibi.nu>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace App\Tests\Twig;
@@ -27,7 +36,7 @@ use Twig\TwigTest;
 /**
  * Integration test helper.
  *
- * @psalm-type TestTemplateType=array{
+ * @phpstan-type TestTemplateType=array{
  *      file: string,
  *      message: string,
  *      condition: string,
@@ -68,9 +77,6 @@ abstract class IntegrationTestCase extends TestCase
      * @param array<int, string[]>  $outputs
      *
      * @throws Error
-     *
-     * @psalm-suppress InternalClass
-     * @psalm-suppress InternalMethod
      */
     protected function doIntegrationTest(
         string $file,
@@ -88,7 +94,7 @@ abstract class IntegrationTestCase extends TestCase
         if ('' !== $condition) {
             $ret = true;
             $this->eval('$ret = ' . $condition);
-            /** @psalm-var bool $ret */
+            /** @phpstan-var bool $ret */
             if (!$ret) {
                 self::markTestSkipped($condition);
             }
@@ -124,7 +130,7 @@ abstract class IntegrationTestCase extends TestCase
                     return;
                 }
 
-                throw new Error(\sprintf('%s: %s', $e::class, $e->getMessage()), -1, null, $e);
+                throw new Error(message: \sprintf('%s: %s', $e::class, $e->getMessage()), previous: $e);
             } finally {
                 \restore_error_handler();
             }
@@ -139,13 +145,13 @@ abstract class IntegrationTestCase extends TestCase
 
                     return;
                 }
-                $e = new Error(\sprintf('%s: %s', $e::class, $e->getMessage()), -1, null, $e);
+                $e = new Error(message: \sprintf('%s: %s', $e::class, $e->getMessage()), previous: $e);
                 $output = \trim(\sprintf('%s: %s', $e::class, $e->getMessage()));
             }
 
             if (false !== $exception) {
-                [$class] = \explode(':', $exception);
-                self::assertThat(null, new Exception($class));
+                [$className] = \explode(':', $exception);
+                self::assertThat(null, new Exception($className));
             }
 
             $expected = \trim($match[3], "\n ");
@@ -153,7 +159,7 @@ abstract class IntegrationTestCase extends TestCase
                 \printf("Compiled templates that failed on case %d:\n", $index + 1);
                 foreach (\array_keys($templates) as $name) {
                     echo "Template: $name\n";
-                    echo $twig->compile($twig->parse($twig->tokenize($twig->getLoader()->getSourceContext($name))));
+                    echo $this->compile($twig, $name);
                 }
             }
             self::assertSame($expected, $output, $message . ' (in ' . $file . ')');
@@ -200,6 +206,19 @@ abstract class IntegrationTestCase extends TestCase
     protected function getTwigTests(): array
     {
         return [];
+    }
+
+    /**
+     * @throws Error
+     */
+    private function compile(Environment $twig, string $name): string
+    {
+        $loader = $twig->getLoader();
+        $context = $loader->getSourceContext($name);
+        $stream = $twig->tokenize($context);
+        $node = $twig->parse($stream);
+
+        return $twig->compile($node);
     }
 
     /**
@@ -260,7 +279,7 @@ abstract class IntegrationTestCase extends TestCase
     }
 
     /**
-     * @psalm-return \Iterator<string>
+     * @phpstan-return \Iterator<string>
      */
     private function getIterator(string $fixturesDir): \Iterator
     {
@@ -273,7 +292,7 @@ abstract class IntegrationTestCase extends TestCase
     }
 
     /**
-     * @psalm-return TestTemplateType[]
+     * @phpstan-return TestTemplateType[]
      */
     private function getTests(): array
     {
@@ -322,7 +341,7 @@ abstract class IntegrationTestCase extends TestCase
             ];
         }
 
-        /** @psalm-var TestTemplateType[] */
+        /** @phpstan-var TestTemplateType[] */
         return $tests;  // @phpstan-ignore varTag.type
     }
 
@@ -345,10 +364,10 @@ abstract class IntegrationTestCase extends TestCase
         return $templates;
     }
 
-    private function unlink(string $filename): void
+    private function unlink(string $path): void
     {
-        if (\file_exists($filename)) {
-            \unlink($filename);
+        if (\file_exists($path)) {
+            \unlink($path);
         }
     }
 }
