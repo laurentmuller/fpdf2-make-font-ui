@@ -61,21 +61,29 @@ $rules = [
     'header_comment' => ['header' => $comment, 'location' => 'after_open'],
 ];
 
+$paths = [
+    __DIR__ . '/config',
+    __DIR__ . '/src',
+    __DIR__ . '/tests',
+];
+
+$files = [
+    __FILE__,
+    __DIR__ . '/rector.php',
+    __DIR__ . '/public/index.php',
+    __DIR__ . '/.twig-cs-fixer.php',
+    __DIR__ . '/rector.php',
+];
+
+$skipPaths = [
+    'sources',
+    'targets',
+];
+
 $finder = Finder::create()
-    ->in([
-        __DIR__ . '/config',
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
-    ])->notPath([
-        'sources',
-        'targets',
-    ])->append([
-        __FILE__,
-        __DIR__ . '/rector.php',
-        __DIR__ . '/public/index.php',
-        __DIR__ . '/.twig-cs-fixer.php',
-        __DIR__ . '/rector.php',
-    ]);
+    ->in($paths)
+    ->append($files)
+    ->notPath($skipPaths);
 
 $config = new Config();
 
