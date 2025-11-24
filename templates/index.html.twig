@@ -11,11 +11,11 @@
     {%- endif -%}
     {{- message -}}
 </div>
-{%- endmacro %}
+{%- endmacro output_level %}
 {# parameters #}
 {% set is_success = result and result.success %}
 {% set levels = enum('fpdf\\LogLevel') %}
-{% block title %}{{ 'query.title'|trans }}{% endblock %}
+{% block title %}{{ 'query.title'|trans }}{% endblock title %}
 {% block body %}
     <div class="card rounded-0">
         {{ form_start(form, {attr: {id: 'data-form', name: 'data-form'}}) }}
@@ -73,7 +73,7 @@
         </div>
         {{ form_end(form) }}
     </div>
-{% endblock %}
+{% endblock body %}
 {% block importmap %}
     {{ importmap('app', {nonce: csp_nonce()}) }}
-{% endblock %}
+{% endblock importmap %}

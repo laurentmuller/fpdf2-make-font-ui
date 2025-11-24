@@ -28,7 +28,7 @@ $paths = [
     __FILE__,
 ];
 
-$skips = [
+$skip = [
     __DIR__ . '/tests/sources',
     __DIR__ . '/tests/targets',
     PreferPHPUnitThisCallRector::class,
@@ -65,7 +65,7 @@ return RectorConfig::configure()
     ->withCache(__DIR__ . '/var/cache/rector')
     ->withRootFiles()
     ->withPaths($paths)
-    ->withSkip($skips)
+    ->withSkip($skip)
     ->withSets($sets)
     ->withRules($rules)
     ->withComposerBased(

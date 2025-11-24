@@ -4,11 +4,11 @@
             <i class="fa-solid fa-{{ icon }} me-2"></i>{{ title|trans|upper }}
         </h6>
     </li>
-{% endmacro %}
+{% endmacro header %}
 
 {% macro divider() %}
     <li><hr class="dropdown-divider"></li>
-{% endmacro %}
+{% endmacro divider %}
 
 {% macro locale_entry(locale) %}
     {% set src = asset('images/' ~ locale ~ '.svg') %}
@@ -22,7 +22,7 @@
             <i class="fa-solid fa-check ms-auto{{ checked }}"></i>
         </a>
     </li>
-{% endmacro %}
+{% endmacro locale_entry %}
 
 {% macro theme_entry(theme, icon) %}
     {% set text = ('theme.' ~ theme)|trans %}
@@ -33,7 +33,7 @@
             <i class="fa-solid fa-check ms-auto"></i>
         </button>
     </li>
-{% endmacro %}
+{% endmacro theme_entry %}
 
 <div class="dropdown">
     <button class="btn btn-link text-body text-decoration-none dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ 'form.actions'|trans }}">

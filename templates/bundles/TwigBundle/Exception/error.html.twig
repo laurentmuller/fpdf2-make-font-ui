@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ 'error.title'|trans|format(status_code, status_text) }}{% endblock %}
+{% block title %}{{ 'error.title'|trans|format(status_code, status_text) }}{% endblock title %}
 {% block body %}
     <div class="card rounded-0 border-danger">
         <div class="card-header rounded-0 d-flex flex-wrap text-bg-danger">
@@ -16,7 +16,7 @@
             {% endif %}
         </div>
     </div>
-{% endblock %}
+{% endblock body %}
 {% block importmap %}
     {{ importmap('error', {nonce: csp_nonce()}) }}
-{% endblock %}
+{% endblock importmap %}
