@@ -14,7 +14,7 @@ Light and dark themes are available.
 ## Fields
 
 - `Font File`: The path to the `.ttf`, `.otf` or `.pfb` file.
-- `AFM File`:  The file that contains font metric information for a Type 1
+- `AFM File`: The file that contains font metric information for a Type 1
   PostScript font (`.pfb`).
 - `encoding`: The name of the encoding to use.
 - `Embed`: Whether to embed the font or not.
@@ -73,10 +73,10 @@ have access to the source code on GitHub.
 ## Versions
 
 [![Application](https://img.shields.io/badge/Application-1.0.0-blue)](https://github.com/laurentmuller/calculation)
-[![Symfony](https://img.shields.io/badge/Symfony-7.3.7-informational?logo=symfony)](https://symfony.com)
+[![Symfony](https://img.shields.io/badge/Symfony-7.4.3-informational?logo=symfony)](https://symfony.com)
 [![PHP](https://img.shields.io/badge/PHP-8.2.28-informational?logo=php)](https://www.php.net)
 [![Apache](https://img.shields.io/badge/Apache-2.4.51-informational?logo=apache)](https://httpd.apache.org)
-[![PhpStorm](https://img.shields.io/badge/PhpStorm-2025.2-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
+[![PhpStorm](https://img.shields.io/badge/PhpStorm-2025.3-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
 
 ## Code Quality
 

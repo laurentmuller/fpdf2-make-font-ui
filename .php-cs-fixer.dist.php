@@ -75,7 +75,9 @@ $files = [
     __DIR__ . '/rector.php',
 ];
 
-$skipPaths = [
+$notName = 'reference.php';
+
+$notPath = [
     'sources',
     'targets',
 ];
@@ -83,7 +85,8 @@ $skipPaths = [
 $finder = Finder::create()
     ->in($paths)
     ->append($files)
-    ->notPath($skipPaths);
+    ->notPath($notPath)
+    ->notName($notName);
 
 $config = new Config();
 
