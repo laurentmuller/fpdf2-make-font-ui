@@ -25,8 +25,10 @@ use Rector\Set\ValueObject\SetList;
 use Rector\Symfony\Set\TwigSetList;
 
 $paths = [
+    __DIR__ . '/config',
     __DIR__ . '/src',
     __DIR__ . '/tests',
+    __DIR__ . '/public',
     __FILE__,
 ];
 

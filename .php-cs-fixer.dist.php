@@ -69,7 +69,6 @@ $paths = [
 
 $files = [
     __FILE__,
-    __DIR__ . '/rector.php',
     __DIR__ . '/public/index.php',
     __DIR__ . '/.twig-cs-fixer.php',
     __DIR__ . '/rector.php',
