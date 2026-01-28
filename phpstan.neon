@@ -5,10 +5,12 @@ parameters:
         - src
         - tests
 
-    type_coverage:
-        param: 100
-        return: 100
-        property: 100
-
     reportUnmatchedIgnoredErrors: true
     checkUninitializedProperties: true
+
+    type_coverage:
+        constant: 100
+        declare: 100
+        param: 100
+        property: 100
+        return: 100
