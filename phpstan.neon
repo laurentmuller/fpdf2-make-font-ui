@@ -1,6 +1,5 @@
 parameters:
     level: 10
-    phpVersion: 80300 # to check check missing override method attribute
     tmpDir: var/cache/phpstan
     paths:
         - src

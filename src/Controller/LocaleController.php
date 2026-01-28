@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class LocaleController extends AbstractController
 {
-    public const LOCALE_KEY = '_locale';
+    public const string LOCALE_KEY = '_locale';
 
     #[Route(
         path: '/locale/{locale}',

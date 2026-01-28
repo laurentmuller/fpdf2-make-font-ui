@@ -26,10 +26,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
-    public const ROUTE_NAME = 'index';
+    public const string ROUTE_NAME = 'index';
 
-    private const KEY_FILE_CONTENT = 'file_content';
-    private const KEY_FILE_NAME = 'file_name';
+    private const string KEY_FILE_CONTENT = 'file_content';
+    private const string KEY_FILE_NAME = 'file_name';
 
     #[Route(
         path: '/download',
