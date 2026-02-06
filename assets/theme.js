@@ -13,11 +13,20 @@
 
     const getPreferredTheme = () => getStoredTheme() || getMediaTheme();
 
+    const supportTransition = () => document.startViewTransition
+        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const setTheme = theme => {
         if (theme === THEME_AUTO) {
             theme = getMediaTheme();
         }
-        document.documentElement.setAttribute('data-bs-theme', theme);
+
+        const callback = () => document.documentElement.setAttribute('data-bs-theme', theme);
+        if (supportTransition()) {
+            document.startViewTransition(callback);
+        } else {
+            callback();
+        }
     }
 
     setTheme(getPreferredTheme())

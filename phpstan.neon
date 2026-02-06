@@ -1,12 +1,20 @@
 parameters:
-    level: 10
+    level: max
     tmpDir: var/cache/phpstan
     paths:
         - src
         - tests
 
-    reportUnmatchedIgnoredErrors: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    checkMissingOverrideMethodAttribute: true
     checkUninitializedProperties: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    reportMaybesInMethodSignatures: true
+    reportMaybesInPropertyPhpDocTypes: true
+    reportStaticMethodSignatures: true
+    reportUnmatchedIgnoredErrors: true
+    checkDynamicProperties: true
 
     type_coverage:
         constant: 100
