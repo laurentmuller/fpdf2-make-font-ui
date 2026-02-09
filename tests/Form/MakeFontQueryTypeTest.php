@@ -16,8 +16,10 @@ namespace App\Tests\Form;
 use App\Form\MakeFontQueryType;
 use App\Model\MakeFontQuery;
 use fpdf\FontMaker;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 final class MakeFontQueryTypeTest extends TypeTestCase
 {
     public function testCustomFormView(): void
