@@ -25,7 +25,7 @@
         "ext-iconv": "*",
         "ext-openssl": "*",
         "ext-zip": "*",
-        "laurentmuller/fpdf2-make-font": "^1.0",
+        "laurentmuller/fpdf2-make-font": "^2.0",
         "sensiolabs/minify-bundle": "^1.0",
         "symfony/asset": "7.4.*",
         "symfony/asset-mapper": "7.4.*",
