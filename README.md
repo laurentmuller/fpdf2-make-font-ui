@@ -73,10 +73,10 @@ have access to the source code on GitHub.
 ## Versions
 
 [![Application](https://img.shields.io/badge/Application-1.0.0-blue)](https://github.com/laurentmuller/calculation)
-[![Symfony](https://img.shields.io/badge/Symfony-7.4.5-informational?logo=symfony)](https://symfony.com)
+[![Symfony](https://img.shields.io/badge/Symfony-7.4.8-informational?logo=symfony)](https://symfony.com)
 [![PHP](https://img.shields.io/badge/PHP-8.3.29-informational?logo=php)](https://www.php.net)
 [![Apache](https://img.shields.io/badge/Apache-2.4.51-informational?logo=apache)](https://httpd.apache.org)
-[![PhpStorm](https://img.shields.io/badge/PhpStorm-2025.3-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
+[![PhpStorm](https://img.shields.io/badge/PhpStorm-2026.1-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
 
 ## Code Quality
 
