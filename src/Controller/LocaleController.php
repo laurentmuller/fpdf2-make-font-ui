@@ -40,7 +40,7 @@ class LocaleController extends AbstractController
     public function createCookie(string $locale): Cookie
     {
         return Cookie::create(self::LOCALE_KEY)
-            ->withExpires(new \DateTime('+1 year'))
+            ->withExpires(new \DateTimeImmutable('+1 year'))
             ->withValue($locale)
             ->withSecure();
     }
