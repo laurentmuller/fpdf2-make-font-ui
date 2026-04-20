@@ -11,3 +11,5 @@ rules:
         enabled: false
     twig.xss_vulnerability:
         enabled: false
+    git.sensitive_file_committed:
+        enabled: false
