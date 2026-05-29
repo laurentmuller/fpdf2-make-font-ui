@@ -19,7 +19,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="FPDF2 Make Font UI Test Suite">
+        <testsuite name="fpdf2-make-font-ui">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
