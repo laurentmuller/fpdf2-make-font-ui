@@ -89,5 +89,4 @@ have access to the source code on GitHub.
 ## Actions
 
 [![CI](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/ci.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/ci.yaml)
-[![PHPUnit](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml/badge.svg)](https://github.com/laurentmuller/fpdf2-make-font-ui/actions/workflows/php_unit.yaml)
 [![StyleCI](https://github.styleci.io/repos/969444909/shield?branch=master)](https://github.styleci.io/repos/969444909?branch=master)
