@@ -36,5 +36,4 @@ jobs:
     phpunit:
         uses: laurentmuller/.github/.github/workflows/phpunit.yaml@main
         with:
-            test-suite: 'fpdf2-make-font-ui'
             install-assets: true
