@@ -145,7 +145,7 @@
         "app-asset-outdated": "@php bin/console importmap:outdated",
         "app-asset-update": "@php bin/console importmap:update",
         "app-asset-compile-debug": "@php bin/console asset-map:compile",
-        "app-asset-compile-prod": "@php bin/console asset-map:compile --no-debug",
+        "compose": "@php bin/console asset-map:compile --no-debug",
         "app-all": [
             "@app-lint",
             "@app-fixer",

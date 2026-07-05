@@ -16,6 +16,7 @@ namespace App\Tests\Twig;
 use App\Service\NonceService;
 use Twig\Extension\AttributeExtension;
 use Twig\RuntimeLoader\RuntimeLoaderInterface;
+use Twig\Test\IntegrationTestCase;
 
 final class NonceServiceTest extends IntegrationTestCase implements RuntimeLoaderInterface
 {
@@ -44,7 +45,7 @@ final class NonceServiceTest extends IntegrationTestCase implements RuntimeLoade
     }
 
     #[\Override]
-    protected function getFixturesDir(): string
+    protected static function getFixturesDirectory(): string
     {
         return __DIR__ . '/../Fixtures/NonceService';
     }

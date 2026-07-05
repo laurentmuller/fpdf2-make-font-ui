@@ -11,11 +11,9 @@
 
 declare(strict_types=1);
 
-use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\CodingStyle\Rector\ClassLike\NewlineBetweenClassLikeStmtsRector;
 use Rector\CodingStyle\Rector\ClassMethod\NewlineBeforeNewAssignSetRector;
-use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassMethod\RemoveParentDelegatingConstructorRector;
@@ -64,19 +62,12 @@ $sets = [
     TwigSetList::TWIG_UNDERSCORE_TO_NAMESPACE,
 ];
 
-$rules = [
-    // static closure and arrow functions
-    StaticClosureRector::class,
-    StaticArrowFunctionRector::class,
-];
-
 return RectorConfig::configure()
     ->withCache(__DIR__ . '/var/cache/rector')
     ->withRootFiles()
     ->withPaths($paths)
     ->withSkip($skip)
     ->withSets($sets)
-    ->withRules($rules)
     ->withComposerBased(
         twig: true,
         phpunit: true,
