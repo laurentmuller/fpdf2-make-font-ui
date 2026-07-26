@@ -57,6 +57,8 @@ $sets = [
     // PHP-Unit
     PHPUnitSetList::PHPUNIT_120,
     PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+    PHPUnitSetList::PHPUNIT_MOCK_TO_STUB,
+    PHPUnitSetList::PHPUNIT_NARROW_ASSERTS,
     // twig
     TwigSetList::TWIG_24,
     TwigSetList::TWIG_UNDERSCORE_TO_NAMESPACE,
@@ -65,6 +67,7 @@ $sets = [
 return RectorConfig::configure()
     ->withCache(__DIR__ . '/var/cache/rector')
     ->withRootFiles()
+    ->reportUnusedSkips()
     ->withPaths($paths)
     ->withSkip($skip)
     ->withSets($sets)
