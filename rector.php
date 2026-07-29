@@ -54,6 +54,7 @@ $sets = [
     SetList::INSTANCEOF,
     SetList::PRIVATIZATION,
     SetList::TYPE_DECLARATION,
+    SetList::IF,
     // PHP-Unit
     PHPUnitSetList::PHPUNIT_120,
     PHPUnitSetList::PHPUNIT_CODE_QUALITY,
@@ -61,6 +62,7 @@ $sets = [
     PHPUnitSetList::PHPUNIT_NARROW_ASSERTS,
     // twig
     TwigSetList::TWIG_24,
+    TwigSetList::TWIG_30,
     TwigSetList::TWIG_UNDERSCORE_TO_NAMESPACE,
 ];
 
@@ -75,8 +77,6 @@ return RectorConfig::configure()
         twig: true,
         phpunit: true,
         symfony: true,
-    )->withPhpSets(
-        php83: true
     )->withAttributesSets(
         symfony: true,
         phpunit: true,
