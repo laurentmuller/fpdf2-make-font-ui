@@ -20,7 +20,6 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveParentDelegatingConstructorRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\Symfony\Set\TwigSetList;
 
 $paths = [
     __DIR__ . '/config',
@@ -56,14 +55,9 @@ $sets = [
     SetList::TYPE_DECLARATION,
     SetList::IF,
     // PHP-Unit
-    PHPUnitSetList::PHPUNIT_120,
     PHPUnitSetList::PHPUNIT_CODE_QUALITY,
     PHPUnitSetList::PHPUNIT_MOCK_TO_STUB,
     PHPUnitSetList::PHPUNIT_NARROW_ASSERTS,
-    // twig
-    TwigSetList::TWIG_24,
-    TwigSetList::TWIG_30,
-    TwigSetList::TWIG_UNDERSCORE_TO_NAMESPACE,
 ];
 
 return RectorConfig::configure()

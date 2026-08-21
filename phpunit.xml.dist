@@ -3,9 +3,12 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.4/phpunit.xsd"
          bootstrap="tests/bootstrap.php"
          cacheDirectory="var/cache/phpunit"
-         displayDetailsOnTestsThatTriggerNotices="true"
-         displayDetailsOnTestsThatTriggerWarnings="true"
          displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true"
+         displayDetailsOnTestsThatTriggerNotices="true"
+         displayDetailsOnTestsThatTriggerErrors="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         displayDetailsOnPhpunitNotices="true"
          colors="true">
 
     <php>

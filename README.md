@@ -1,6 +1,6 @@
 # FPDF2 Make Font UI
 
-This plugin uses the
+This Symfony application uses the
 [FPDF2 Make Font](https://github.com/laurentmuller/fpdf2-make-font) library to
 generate fonts.
 
