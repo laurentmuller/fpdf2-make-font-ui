@@ -8,8 +8,7 @@ generate fonts.
 
 Light and dark themes are available.
 
-![User Interface](public/images/theme-light.png)
-![User Interface](public/images/theme-dark.png)
+![User Interface](public/images/theme-split.png)
 
 ## Fields
 

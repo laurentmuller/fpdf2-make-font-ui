@@ -24,6 +24,11 @@
     ],
     "screenshots": [
         {
+            "src": "images/theme-split.png",
+            "sizes": "609x609",
+            "type": "image/png"
+        },
+        {
             "src": "images/theme-light.png",
             "sizes": "636x609",
             "type": "image/png"
