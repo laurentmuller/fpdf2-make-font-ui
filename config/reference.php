@@ -680,10 +680,10 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         message_bus?: scalar|Param|null, // The message bus to use. // Default: "messenger.default_bus"
  *         routing?: array<string, array{ // Default: []
  *             service?: scalar|Param|null,
- *             secret?: scalar|Param|null, // Default: ""
+ *             secret?: scalar|Param|null, // The secret used to verify incoming request signatures. It must be set in production: with an empty value, depending on the parser, requests from any sender are accepted or every request is rejected. // Default: ""
  *         }>,
  *     },
- *     remote-event?: bool|array{ // RemoteEvent configuration
+ *     remote_event?: bool|array{ // RemoteEvent configuration
  *         enabled?: bool|Param, // Default: false
  *     },
  *     json_streamer?: bool|array{ // JSON streamer configuration
@@ -805,6 +805,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         local_binary?: scalar|Param|null, // Path to the local binary (use "auto" for automatic detection) // Default: false
  *         download_binary?: bool|Param, // Download the binary from GitHub (defaults to "true" in debug mode) // Default: "%kernel.debug%"
  *         download_directory?: scalar|Param|null, // Directory to store the downloaded binary // Default: "%kernel.project_dir%/var/minify"
+ *         version?: scalar|Param|null, // Minify version to download (null for latest) // Default: null
  *     },
  * }
  * @psalm-type ConfigType = array{
