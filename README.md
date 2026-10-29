@@ -72,8 +72,8 @@ have access to the source code on GitHub.
 ## Versions
 
 [![Application](https://img.shields.io/badge/Application-1.0.0-blue)](https://github.com/laurentmuller/calculation)
-[![Symfony](https://img.shields.io/badge/Symfony-7.4.15-informational?logo=symfony)](https://symfony.com)
-[![PHP](https://img.shields.io/badge/PHP-8.3.31-informational?logo=php)](https://www.php.net)
+[![Symfony](https://img.shields.io/badge/Symfony-7.4.22-informational?logo=symfony)](https://symfony.com)
+[![PHP](https://img.shields.io/badge/PHP-8.4.27-informational?logo=php)](https://www.php.net)
 [![Apache](https://img.shields.io/badge/Apache-2.4.67-informational?logo=apache)](https://httpd.apache.org)
 [![PhpStorm](https://img.shields.io/badge/PhpStorm-2026.2-informational?logo=phpstorm)](https://www.jetbrains.com/phpstorm)
 
