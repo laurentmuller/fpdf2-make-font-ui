@@ -1,8 +1,7 @@
 {
     "require": {
         "php": "^8.4",
-        "rector/rector": "^2.0",
-        "phpstan/phpstan": "2.3.3"
+        "rector/rector": "^2.0"
     },
     "config": {
         "preferred-install": {
