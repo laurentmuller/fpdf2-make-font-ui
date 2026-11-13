@@ -137,7 +137,7 @@ final class IndexControllerTest extends WebTestCase
     private function submitForm(array $values): void
     {
         $client = self::createClient();
-        $client->request(Request::METHOD_POST, '/');
+        $client->request(Request::METHOD_GET, '/');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertResponseIsSuccessful();
         $client->submitForm('Generate', $values);

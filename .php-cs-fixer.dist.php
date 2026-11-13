@@ -34,7 +34,7 @@ $rules = [
     '@Symfony:risky' => true,
     '@PHP8x3Migration' => true,
     '@PHP8x3Migration:risky' => true,
-    '@PHPUnit100Migration:risky' => true,
+    '@PHPUnit11x0Migration:risky' => true,
 
     // --------------------------------------------------------------
     //  Rules override

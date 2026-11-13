@@ -11,31 +11,48 @@
 
 declare(strict_types=1);
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use fpdf\Translator;
-use Symfony\Config\FrameworkConfig;
 
-return static function (FrameworkConfig $framework): void {
-    $framework->secret('%env(APP_SECRET)%');
+return App::config([
+    'framework' => [
+        'secret' => '%env(APP_SECRET)%',
+        'csrf_protection' => true,
+        'default_locale' => Translator::DEFAULT_LOCALE,
+        'enabled_locales' => [Translator::DEFAULT_LOCALE],
 
-    $framework->session()
-        ->name('MAKE_FONT_SESSION_ID')
-        ->enabled(true);
+        'session' => [
+            'name' => 'MAKE_FONT_SESSION_ID',
+            'enabled' => true,
+        ],
 
-    $framework->defaultLocale(Translator::DEFAULT_LOCALE)
-        ->enabledLocales(Translator::ALLOWED_LOCALES);
+        'form' => [
+            'csrf_protection' => [
+                'enabled' => true,
+                'field_name' => 'csrf_token',
+            ],
+        ],
 
-    $framework->translator()
-        ->defaultPath('%kernel.project_dir%/translations')
-        ->fallbacks(Translator::DEFAULT_LOCALE);
+        'property_info' => [
+            'with_constructor_extractor' => true,
+        ],
+    ],
 
-    $framework->csrfProtection()
-        ->enabled(true);
+    'when@prod' => [
+        'framework' => [
+            'router' => [
+                'strict_requirements' => null,
+            ],
+        ],
+    ],
 
-    $framework->form()
-        ->csrfProtection()
-        ->enabled(true)
-        ->fieldName('csrf_token');
-
-    $framework->propertyInfo()
-        ->withConstructorExtractor(true);
-};
+    'when@test' => [
+        'framework' => [
+            'test' => true,
+            'session' => [
+                'storage_factory_id' => 'session.storage.factory.mock_file',
+            ],
+        ],
+    ],
+]);

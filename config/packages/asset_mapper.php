@@ -11,13 +11,26 @@
 
 declare(strict_types=1);
 
-use Symfony\Config\FrameworkConfig;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-return static function (FrameworkConfig $framework): void {
-    $assetMapper = $framework->assetMapper();
-
-    $assetMapper->path('assets/', '')
-        ->missingImportMode('strict')
-        ->importmapPolyfill(false)
-        ->importmapScriptAttribute('crossorigin', 'anonymous');
-};
+return App::config([
+    'framework' => [
+        'asset_mapper' => [
+            'paths' => [
+                'assets/' => '',
+            ],
+            'missing_import_mode' => 'strict',
+            'importmap_polyfill' => false,
+            'importmap_script_attributes' => [
+                'crossorigin' => 'anonymous',
+            ],
+        ],
+    ],
+    'when@prod' => [
+        'framework' => [
+            'asset_mapper' => [
+                'missing_import_mode' => 'warn',
+            ],
+        ],
+    ],
+]);

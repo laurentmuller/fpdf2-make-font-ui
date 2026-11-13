@@ -11,13 +11,23 @@
 
 declare(strict_types=1);
 
-use Symfony\Config\SensiolabsMinifyConfig;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-return static function (SensiolabsMinifyConfig $sensiolabsMinify): void {
-    $sensiolabsMinify->minify()
-        ->downloadBinary(true);
-
-    $sensiolabsMinify->assetMapper()
-        ->ignorePaths(['*.min.js', '*.min.css'])
-        ->ignoreVendor(false);
-};
+return App::config([
+    'sensiolabs_minify' => [
+        'asset_mapper' => [
+            'ignore_paths' => ['*.min.js', '*.min.css'],
+            'ignore_vendor' => false,
+        ],
+        'minify' => [
+            'download_binary' => true,
+        ],
+    ],
+    'when@test' => [
+        'sensiolabs_minify' => [
+            'asset_mapper' => [
+                'enabled' => false,
+            ],
+        ],
+    ],
+]);

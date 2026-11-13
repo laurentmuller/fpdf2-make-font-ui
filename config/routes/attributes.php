@@ -11,19 +11,31 @@
 
 declare(strict_types=1);
 
-use App\Kernel;
-use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+namespace Symfony\Component\Routing\Loader\Configurator;
 
-return static function (RoutingConfigurator $config): void {
-    $config->import('../../src/Controller/', 'attribute');
-    $config->import(Kernel::class, 'attribute');
-
-    if ('dev' === $config->env()) {
-        $config->import('@FrameworkBundle/Resources/config/routing/errors.php')
-            ->prefix('/_error');
-        $config->import('@WebProfilerBundle/Resources/config/routing/wdt.php')
-            ->prefix('/_wdt');
-        $config->import('@WebProfilerBundle/Resources/config/routing/profiler.php')
-            ->prefix('/_profiler');
-    }
-};
+return Routes::config([
+    'controllers' => [
+        'resource' => 'routing.controllers',
+        'schemes' => 'http',
+    ],
+    'when@dev' => [
+        ' _error' => [
+            'resource' => '@FrameworkBundle/Resources/config/routing/errors.php',
+            'prefix' => '/_error',
+        ],
+        'web_profiler_wdt' => [
+            'resource' => '@WebProfilerBundle/Resources/config/routing/wdt.php',
+            'prefix' => '/_wdt',
+        ],
+        'web_profiler_profiler' => [
+            'resource' => '@WebProfilerBundle/Resources/config/routing/profiler.php',
+            'prefix' => '/_profiler',
+        ],
+    ],
+    'when@prod' => [
+        'controllers' => [
+            'resource' => 'routing.controllers',
+            'schemes' => 'https',
+        ],
+    ],
+]);
