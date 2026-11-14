@@ -48,7 +48,6 @@ $sets = [
     SetList::DEAD_CODE,
     SetList::PRIVATIZATION,
     SetList::TYPE_DECLARATION,
-    SetList::IF,
     // PHP-Unit
     PHPUnitSetList::PHPUNIT_CODE_QUALITY,
     PHPUnitSetList::PHPUNIT_MOCK_TO_STUB,

@@ -11,22 +11,24 @@
 
 declare(strict_types=1);
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use fpdf\FontMaker;
 use fpdf\Translator;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $container): void {
-    $services = $container->services();
-    $services->defaults()
-        ->autowire()
-        ->autoconfigure();
+$path = __DIR__ . '/../src/';
 
-    $services->set(FontMaker::class, FontMaker::class);
-
-    $path = __DIR__ . '/../src/';
-    $services->load('App\\', $path . '*')
-        ->exclude($path . 'Kernel.php');
-
-    $container->parameters()
-        ->set('supported_locales', \implode('|', Translator::ALLOWED_LOCALES));
-};
+return App::config([
+    'parameters' => [
+        'supported_locales' => \implode('|', Translator::ALLOWED_LOCALES),
+    ],
+    'services' => [
+        FontMaker::class => [FontMaker::class],
+        'App\\' => [
+            'resource' => $path . '*/*',
+            'exclude' => [
+                $path . 'Kernel.php',
+            ],
+        ],
+    ],
+]);

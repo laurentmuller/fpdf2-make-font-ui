@@ -11,8 +11,15 @@
 
 declare(strict_types=1);
 
-use Symfony\Config\TwigConfig;
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-return static function (TwigConfig $twig): void {
-    $twig->formThemes(['bootstrap_5_layout.html.twig']);
-};
+return App::config([
+    'twig' => [
+        'form_themes' => ['bootstrap_5_layout.html.twig'],
+    ],
+    'when@test' => [
+        'twig' => [
+            'strict_variables' => true,
+        ],
+    ],
+]);

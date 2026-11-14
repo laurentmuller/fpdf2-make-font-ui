@@ -34,7 +34,7 @@ $rules = [
     '@Symfony:risky' => true,
     '@PHP8x3Migration' => true,
     '@PHP8x3Migration:risky' => true,
-    '@PHPUnit100Migration:risky' => true,
+    '@PHPUnit11x0Migration:risky' => true,
 
     // --------------------------------------------------------------
     //  Rules override
@@ -71,6 +71,7 @@ $files = [
     __FILE__,
     __DIR__ . '/public/index.php',
     __DIR__ . '/.twig-cs-fixer.php',
+    __DIR__ . '/importmap.php',
     __DIR__ . '/rector.php',
 ];
 
