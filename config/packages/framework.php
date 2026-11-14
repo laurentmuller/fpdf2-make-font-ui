@@ -20,7 +20,7 @@ return App::config([
         'secret' => '%env(APP_SECRET)%',
         'csrf_protection' => true,
         'default_locale' => Translator::DEFAULT_LOCALE,
-        'enabled_locales' => [Translator::DEFAULT_LOCALE],
+        'enabled_locales' => Translator::ALLOWED_LOCALES,
 
         'session' => [
             'name' => 'MAKE_FONT_SESSION_ID',

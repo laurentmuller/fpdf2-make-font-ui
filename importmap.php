@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the 'fpdf2-make-font-ui' package.
+ *
+ * For the license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author bibi.nu <bibi@bibi.nu>
+ */
+
+declare(strict_types=1);
+
 /**
  * Returns the importmap for this application.
  *
@@ -23,11 +34,27 @@
  * }>
  */
 return [
-    'app' => ['path' => './assets/app.js', 'entrypoint' => true],
-    'error' => ['path' => './assets/error.js', 'entrypoint' => true],
-    'theme' => ['path' => './assets/theme.js'],
-    'bootstrap' => ['version' => '5.3.9'],
-    '@popperjs/core' => ['version' => '2.11.8'],
-    'bootstrap/dist/css/bootstrap.css' => ['version' => '5.3.9', 'type' => 'css'],
-    'bootstrap/dist/css/bootstrap.min.css' => ['version' => '5.3.9', 'type' => 'css'],
+    'app' => [
+        'path' => './assets/app.js', 'entrypoint' => true,
+    ],
+    'error' => [
+        'path' => './assets/error.js', 'entrypoint' => true,
+    ],
+    'theme' => [
+        'path' => './assets/theme.js',
+    ],
+    'bootstrap' => [
+        'version' => '5.3.9',
+    ],
+    '@popperjs/core' => [
+        'version' => '2.11.8',
+    ],
+    'bootstrap/dist/css/bootstrap.css' => [
+        'version' => '5.3.9',
+        'type' => 'css',
+    ],
+    'bootstrap/dist/css/bootstrap.min.css' => [
+        'version' => '5.3.9',
+        'type' => 'css',
+    ],
 ];
