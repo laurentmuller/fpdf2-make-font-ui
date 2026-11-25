@@ -14,7 +14,6 @@ declare(strict_types=1);
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\CodingStyle\Rector\ClassLike\NewlineBetweenClassLikeStmtsRector;
 use Rector\CodingStyle\Rector\ClassMethod\NewlineBeforeNewAssignSetRector;
-use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
@@ -32,8 +31,6 @@ $skip = [
     __DIR__ . '/tests/sources',
     __DIR__ . '/tests/targets',
     PreferPHPUnitThisCallRector::class,
-    // no space before or after statements
-    NewlineAfterStatementRector::class,
     NewlineBeforeNewAssignSetRector::class,
     // don't separate constants
     NewlineBetweenClassLikeStmtsRector::class,
